@@ -1,0 +1,1744 @@
+{
+  "version": "2.9",
+  "children": [
+    {
+      "type": "frame",
+      "id": "qKkmw",
+      "x": -250,
+      "y": -195,
+      "name": "简历编辑器",
+      "width": 1436,
+      "fill": "#F8FAFC",
+      "children": [
+        {
+          "type": "frame",
+          "id": "iCpau",
+          "name": "编辑面板",
+          "width": 480,
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "center",
+            "thickness": 1,
+            "fill": "#E2E8F0"
+          },
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "CwjnD",
+              "name": "editorHeader",
+              "width": "fill_container",
+              "stroke": {
+                "align": "center",
+                "thickness": 1,
+                "fill": "#E2E8F0"
+              },
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 24,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "YvqvW",
+                  "name": "editorTitle",
+                  "fill": "#1E293B",
+                  "content": "编辑简历",
+                  "fontFamily": "Inter",
+                  "fontSize": 20,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "AdVmx",
+                  "name": "editorSubtitle",
+                  "fill": "#64748B",
+                  "content": "填写以下信息，右侧实时预览简历效果",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "dpDWU",
+              "name": "formContainer",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 24,
+              "padding": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "990TZ",
+                  "name": "personalSection",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ot0Oo",
+                      "name": "sectionTitle1",
+                      "fill": "#1E293B",
+                      "content": "基本信息",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "3Oilo",
+                      "name": "nameGroup",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "2YkAd",
+                          "name": "nameLabel",
+                          "fill": "#334155",
+                          "content": "姓名",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "CQjIW",
+                          "name": "nameInput",
+                          "width": "fill_container",
+                          "height": 40,
+                          "cornerRadius": 6,
+                          "stroke": {
+                            "align": "center",
+                            "thickness": 1,
+                            "fill": "#E2E8F0"
+                          },
+                          "padding": [
+                            0,
+                            12
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "YjEyv",
+                              "name": "namePlaceholder",
+                              "fill": "#94A3B8",
+                              "content": "请输入姓名",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "1szP2",
+                      "name": "titleGroup",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "1epi2",
+                          "name": "titleLabel",
+                          "fill": "#334155",
+                          "content": "职位",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "IycW5",
+                          "name": "titleInput",
+                          "width": "fill_container",
+                          "height": 40,
+                          "cornerRadius": 6,
+                          "stroke": {
+                            "align": "center",
+                            "thickness": 1,
+                            "fill": "#E2E8F0"
+                          },
+                          "padding": [
+                            0,
+                            12
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "ckGng",
+                              "name": "titlePlaceholder",
+                              "fill": "#94A3B8",
+                              "content": "请输入职位",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "6T5dt",
+                      "name": "emailGroup",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "4rkbq",
+                          "name": "emailLabel",
+                          "fill": "#334155",
+                          "content": "邮箱",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Yj7bd",
+                          "name": "emailInput",
+                          "width": "fill_container",
+                          "height": 40,
+                          "cornerRadius": 6,
+                          "stroke": {
+                            "align": "center",
+                            "thickness": 1,
+                            "fill": "#E2E8F0"
+                          },
+                          "padding": [
+                            0,
+                            12
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "jLlAX",
+                              "name": "emailPlaceholder",
+                              "fill": "#94A3B8",
+                              "content": "example@email.com",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tavtO",
+                      "name": "phoneGroup",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "UAL0v",
+                          "name": "phoneLabel",
+                          "fill": "#334155",
+                          "content": "电话",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "txmFf",
+                          "name": "phoneInput",
+                          "width": "fill_container",
+                          "height": 40,
+                          "cornerRadius": 6,
+                          "stroke": {
+                            "align": "center",
+                            "thickness": 1,
+                            "fill": "#E2E8F0"
+                          },
+                          "padding": [
+                            0,
+                            12
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "38QTd",
+                              "name": "phonePlaceholder",
+                              "fill": "#94A3B8",
+                              "content": "请输入联系电话",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "BHf0u",
+                  "name": "summarySection",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "oKJib",
+                      "name": "sectionTitle2",
+                      "fill": "#1E293B",
+                      "content": "个人简介",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ntEJ5",
+                      "name": "summaryGroup",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Rrg7g",
+                          "name": "summaryLabel",
+                          "fill": "#334155",
+                          "content": "工作简介",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "P8lEo",
+                          "name": "summaryInput",
+                          "width": "fill_container",
+                          "height": 120,
+                          "cornerRadius": 6,
+                          "stroke": {
+                            "align": "center",
+                            "thickness": 1,
+                            "fill": "#E2E8F0"
+                          },
+                          "padding": 12,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "3d0xi",
+                              "name": "summaryPlaceholder",
+                              "fill": "#94A3B8",
+                              "content": "简述你的工作经验、专业能力和职业目标...",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "lJc4A",
+                  "name": "workSection",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "RHDZi",
+                      "name": "sectionTitle3",
+                      "fill": "#1E293B",
+                      "content": "工作经验",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "HyLkr",
+                      "name": "workItem1",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "cmYjk",
+                          "name": "companyGroup",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "mODlk",
+                              "name": "companyLabel",
+                              "fill": "#334155",
+                              "content": "公司名称",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "OGCat",
+                              "name": "companyInput",
+                              "width": "fill_container",
+                              "height": 40,
+                              "cornerRadius": 6,
+                              "stroke": {
+                                "align": "center",
+                                "thickness": 1,
+                                "fill": "#E2E8F0"
+                              },
+                              "padding": [
+                                0,
+                                12
+                              ],
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "KlF0e",
+                                  "name": "companyPlaceholder",
+                                  "fill": "#94A3B8",
+                                  "content": "请输入公司名称",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "MGFKx",
+                          "name": "workTimeGroup",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "B4Xt0",
+                              "name": "roleGroup",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "Xibcq",
+                                  "name": "roleLabel",
+                                  "fill": "#334155",
+                                  "content": "职位",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "NfVQk",
+                                  "name": "roleInput",
+                                  "width": "fill_container",
+                                  "height": 40,
+                                  "cornerRadius": 6,
+                                  "stroke": {
+                                    "align": "center",
+                                    "thickness": 1,
+                                    "fill": "#E2E8F0"
+                                  },
+                                  "padding": [
+                                    0,
+                                    12
+                                  ],
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "7XJtp",
+                                      "name": "rolePlaceholder",
+                                      "fill": "#94A3B8",
+                                      "content": "请输入职位",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "BddYo",
+                              "name": "periodGroup",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "xSZXq",
+                                  "name": "periodLabel",
+                                  "fill": "#334155",
+                                  "content": "时间",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "dDES8",
+                                  "name": "periodInput",
+                                  "width": "fill_container",
+                                  "height": 40,
+                                  "cornerRadius": 6,
+                                  "stroke": {
+                                    "align": "center",
+                                    "thickness": 1,
+                                    "fill": "#E2E8F0"
+                                  },
+                                  "padding": [
+                                    0,
+                                    12
+                                  ],
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "5ztjX",
+                                      "name": "periodPlaceholder",
+                                      "fill": "#94A3B8",
+                                      "content": "2020-2024",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "9tDn6",
+                  "name": "skillSection",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "lTSEi",
+                      "name": "sectionTitle4",
+                      "fill": "#1E293B",
+                      "content": "专业技能",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "4NUn5",
+                      "name": "skillsGroup",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "8BRmt",
+                          "name": "skillsLabel",
+                          "fill": "#334155",
+                          "content": "技能标签（用逗号分隔）",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "baJBF",
+                          "name": "skillsInput",
+                          "width": "fill_container",
+                          "height": 40,
+                          "cornerRadius": 6,
+                          "stroke": {
+                            "align": "center",
+                            "thickness": 1,
+                            "fill": "#E2E8F0"
+                          },
+                          "padding": [
+                            0,
+                            12
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "52FSK",
+                              "name": "skillsPlaceholder",
+                              "fill": "#94A3B8",
+                              "content": "JavaScript, React, Node.js, Python...",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "WYXe6",
+                  "name": "educationSection",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "eYRlz",
+                      "name": "sectionTitle5",
+                      "fill": "#1E293B",
+                      "content": "学习履历",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "omjYS",
+                      "name": "educationInputsContainer",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "0DbVc",
+                          "name": "educationRow1",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "A80vr",
+                              "name": "schoolGroup",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "yg3JT",
+                                  "name": "schoolLabel",
+                                  "fill": "#334155",
+                                  "content": "学校名称",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "mCtvi",
+                                  "name": "schoolInput",
+                                  "width": "fill_container",
+                                  "height": 40,
+                                  "cornerRadius": 6,
+                                  "stroke": {
+                                    "align": "center",
+                                    "thickness": 1,
+                                    "fill": "#E2E8F0"
+                                  },
+                                  "padding": [
+                                    0,
+                                    12
+                                  ],
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "6eF8C",
+                                      "name": "schoolPlaceholder",
+                                      "fill": "#94A3B8",
+                                      "content": "请输入学校名称",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "2Xq3Y",
+                              "name": "degreeGroup",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "gPTdu",
+                                  "name": "degreeLabel",
+                                  "fill": "#334155",
+                                  "content": "学历",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "ni6uI",
+                                  "name": "degreeInput",
+                                  "width": "fill_container",
+                                  "height": 40,
+                                  "cornerRadius": 6,
+                                  "stroke": {
+                                    "align": "center",
+                                    "thickness": 1,
+                                    "fill": "#E2E8F0"
+                                  },
+                                  "padding": [
+                                    0,
+                                    12
+                                  ],
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "zhLFo",
+                                      "name": "degreePlaceholder",
+                                      "fill": "#94A3B8",
+                                      "content": "请输入学历",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "naqKE",
+                          "name": "educationRow2",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "hTwHi",
+                              "name": "majorGroup",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "xwMDv",
+                                  "name": "majorLabel",
+                                  "fill": "#334155",
+                                  "content": "所学专业",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "LDZ3r",
+                                  "name": "majorInput",
+                                  "width": "fill_container",
+                                  "height": 40,
+                                  "cornerRadius": 6,
+                                  "stroke": {
+                                    "align": "center",
+                                    "thickness": 1,
+                                    "fill": "#E2E8F0"
+                                  },
+                                  "padding": [
+                                    0,
+                                    12
+                                  ],
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "Qke2v",
+                                      "name": "majorPlaceholder",
+                                      "fill": "#94A3B8",
+                                      "content": "请输入专业",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "74EYE",
+                              "name": "timeGroup",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "dA9l3",
+                                  "name": "timeLabel",
+                                  "fill": "#334155",
+                                  "content": "在校时间",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "G92Ox",
+                                  "name": "timeInput",
+                                  "width": "fill_container",
+                                  "height": 40,
+                                  "cornerRadius": 6,
+                                  "stroke": {
+                                    "align": "center",
+                                    "thickness": 1,
+                                    "fill": "#E2E8F0"
+                                  },
+                                  "padding": [
+                                    0,
+                                    12
+                                  ],
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "sRXeZ",
+                                      "name": "timePlaceholder",
+                                      "fill": "#94A3B8",
+                                      "content": "例如：2016.09 - 2020.06",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "O73fn",
+          "name": "预览面板",
+          "width": "fill_container",
+          "fill": "#F1F5F9",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": 32,
+          "children": [
+            {
+              "type": "frame",
+              "id": "MfxlL",
+              "name": "previewHeader",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "HNXVz",
+                  "name": "previewTitle",
+                  "fill": "#1E293B",
+                  "content": "简历预览",
+                  "fontFamily": "Inter",
+                  "fontSize": 20,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "bfUhM",
+                  "name": "previewSubtitle",
+                  "fill": "#64748B",
+                  "content": "实时展示您的简历效果",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "nSRu7",
+                  "name": "previewDecoration",
+                  "width": 120,
+                  "height": 4,
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 0,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#3B82F6",
+                        "position": 0
+                      },
+                      {
+                        "color": "#8B5CF6",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 2
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "1adnP",
+              "name": "resumeCard",
+              "width": 884,
+              "height": "fit_content(0)",
+              "fill": "#FFFFFF",
+              "cornerRadius": 16,
+              "stroke": {
+                "align": "center",
+                "thickness": 1,
+                "fill": "#E2E8F0"
+              },
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "EMjou",
+                  "name": "resumeBG",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 16,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "eDA8W",
+                      "name": "gradientTop",
+                      "width": "fill_container",
+                      "height": 80,
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": 180,
+                        "size": {
+                          "height": 1
+                        },
+                        "colors": [
+                          {
+                            "color": "#3B82F6",
+                            "position": 0
+                          },
+                          {
+                            "color": "#6366F1",
+                            "position": 1
+                          }
+                        ]
+                      },
+                      "cornerRadius": [
+                        16,
+                        16,
+                        0,
+                        0
+                      ],
+                      "layout": "vertical"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "dhfVD",
+                      "name": "resumeContent",
+                      "width": "fill_container",
+                      "fill": "#FFFFFF",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": [
+                        20,
+                        25
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "OBJKg",
+                          "name": "profileInfo",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "padding": [
+                            0,
+                            20
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "f7u4Q",
+                              "name": "profileName",
+                              "fill": "#1E293B",
+                              "content": "张三",
+                              "fontFamily": "Inter",
+                              "fontSize": 26,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "fO2jK",
+                              "name": "profileTitle",
+                              "cornerRadius": 4,
+                              "padding": [
+                                8,
+                                20
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "arIUF",
+                                  "name": "profileTitleText",
+                                  "fill": "#3B82F6",
+                                  "content": "前端开发工程师",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "CYQpn",
+                              "name": "divider1",
+                              "width": "fill_container",
+                              "height": 1,
+                              "fill": "#E2E8F0"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "kyKy6",
+                              "name": "contactSection",
+                              "width": "fill_container",
+                              "gap": 24,
+                              "justifyContent": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "zEoQ0",
+                                  "name": "contactEmailNew",
+                                  "gap": 6,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "Y17LT",
+                                      "name": "emailIconInner",
+                                      "width": 16,
+                                      "height": 16,
+                                      "iconFontName": "mail",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "#3B82F6"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "5Vhe3",
+                                      "name": "emailTextNew",
+                                      "fill": "#64748B",
+                                      "content": "zhangsan@example.com",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 12,
+                                      "fontWeight": "500"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "m0lnI",
+                                  "name": "contactPhoneNew",
+                                  "gap": 6,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "VjtiZ",
+                                      "name": "phoneIconInner",
+                                      "width": 16,
+                                      "height": 16,
+                                      "iconFontName": "phone",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "#3B82F6"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "nZKTf",
+                                      "name": "phoneTextNew",
+                                      "fill": "#64748B",
+                                      "content": "138-0013-8000",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 12,
+                                      "fontWeight": "500"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "YpXIP",
+                          "name": "summarySectionNew",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 16,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "sGXBs",
+                              "name": "summaryHeader",
+                              "width": "fill_container",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "NpXCh",
+                                  "name": "summaryIcon",
+                                  "width": 32,
+                                  "height": 32,
+                                  "fill": {
+                                    "type": "gradient",
+                                    "gradientType": "linear",
+                                    "enabled": true,
+                                    "rotation": 0,
+                                    "size": {
+                                      "height": 1
+                                    },
+                                    "colors": [
+                                      {
+                                        "color": "#3B82F6",
+                                        "position": 0
+                                      },
+                                      {
+                                        "color": "#8B5CF6",
+                                        "position": 1
+                                      }
+                                    ]
+                                  },
+                                  "cornerRadius": 6,
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "iOy2Z",
+                                      "name": "summaryIconInner",
+                                      "width": 16,
+                                      "height": 16,
+                                      "iconFontName": "user",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "#FFFFFF"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "PGaaN",
+                                  "name": "summaryTitle",
+                                  "fill": "#1E293B",
+                                  "content": "个人简介",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "700"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "KGZdG",
+                              "name": "summaryContent",
+                              "width": "fill_container",
+                              "fill": "#F8FAFC",
+                              "cornerRadius": 8,
+                              "layout": "vertical",
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "MhEZk",
+                                  "name": "summaryText",
+                                  "fill": "#334155",
+                                  "content": "资深前端开发工程师，5年以上开发经验，擅长现代化Web应用开发。熟练掌握React、Vue等主流框架。",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "3cqxp",
+                          "name": "workSectionNew",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "OcrH8",
+                              "name": "workHeader",
+                              "width": "fill_container",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "6X1m3",
+                                  "name": "workIcon",
+                                  "width": 32,
+                                  "height": 32,
+                                  "fill": {
+                                    "type": "gradient",
+                                    "gradientType": "linear",
+                                    "enabled": true,
+                                    "rotation": 0,
+                                    "size": {
+                                      "height": 1
+                                    },
+                                    "colors": [
+                                      {
+                                        "color": "#3B82F6",
+                                        "position": 0
+                                      },
+                                      {
+                                        "color": "#8B5CF6",
+                                        "position": 1
+                                      }
+                                    ]
+                                  },
+                                  "cornerRadius": 6,
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "1oRM1",
+                                      "name": "workIconInner",
+                                      "width": 16,
+                                      "height": 16,
+                                      "iconFontName": "briefcase",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "#FFFFFF"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "22n01",
+                                  "name": "workTitle",
+                                  "fill": "#1E293B",
+                                  "content": "工作经验",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "700"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "dKv6g",
+                              "name": "workCard1",
+                              "width": "fill_container",
+                              "cornerRadius": 12,
+                              "stroke": {
+                                "align": "center",
+                                "thickness": 1,
+                                "fill": "#E2E8F0"
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 14,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "OfdjV",
+                                  "name": "workCardHeader",
+                                  "width": "fill_container",
+                                  "justifyContent": "space_between",
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "z35yG",
+                                      "name": "workCardLeft",
+                                      "layout": "vertical",
+                                      "gap": 4,
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "rG3Br",
+                                          "name": "workCompanyName",
+                                          "fill": "#1E293B",
+                                          "content": "阿里巴巴集团",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 16,
+                                          "fontWeight": "700"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "SvBUp",
+                                      "name": "workRoleInfo",
+                                      "layout": "vertical",
+                                      "gap": 4,
+                                      "alignItems": "end",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "ltKs4",
+                                          "name": "workRoleTitle",
+                                          "fill": "#3B82F6",
+                                          "content": "高级前端开发工程师",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 14,
+                                          "fontWeight": "600"
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "sEL5Z",
+                                          "name": "workTimeText",
+                                          "fill": "#DBEAFE",
+                                          "cornerRadius": 4,
+                                          "padding": [
+                                            6,
+                                            14
+                                          ],
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "yHctw",
+                                              "name": "workTimeInner",
+                                              "fill": "#3B82F6",
+                                              "content": "2021-2024",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 12,
+                                              "fontWeight": "600"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "tsmwX",
+                                  "name": "workDescText",
+                                  "fill": "#64748B",
+                                  "content": "负责核心业务模块的开发和维护，参与架构设计，带领团队完成多个重大项目的交付。",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "gK8rs",
+                          "name": "skillSectionNew",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "D7M8k",
+                              "name": "skillHeader",
+                              "width": "fill_container",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "zOFOa",
+                                  "name": "skillIcon",
+                                  "width": 32,
+                                  "height": 32,
+                                  "fill": {
+                                    "type": "gradient",
+                                    "gradientType": "linear",
+                                    "enabled": true,
+                                    "rotation": 0,
+                                    "size": {
+                                      "height": 1
+                                    },
+                                    "colors": [
+                                      {
+                                        "color": "#3B82F6",
+                                        "position": 0
+                                      },
+                                      {
+                                        "color": "#8B5CF6",
+                                        "position": 1
+                                      }
+                                    ]
+                                  },
+                                  "cornerRadius": 6,
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "9RA5I",
+                                      "name": "skillIconInner",
+                                      "width": 16,
+                                      "height": 16,
+                                      "iconFontName": "zap",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "#FFFFFF"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "JKYOO",
+                                  "name": "skillTitle",
+                                  "fill": "#1E293B",
+                                  "content": "专业技能",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "700"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "2QmIX",
+                              "name": "skillTagsContainerNew",
+                              "width": "fill_container",
+                              "gap": 10,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "5Y1ff",
+                                  "name": "skillTagA",
+                                  "cornerRadius": 4,
+                                  "padding": [
+                                    10,
+                                    20
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "dznjt",
+                                      "name": "skillTextA",
+                                      "fill": "#3B82F6",
+                                      "content": "JavaScript",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "ADuMN",
+                                  "name": "skillTagB",
+                                  "cornerRadius": 4,
+                                  "padding": [
+                                    10,
+                                    20
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "2SBx2",
+                                      "name": "skillTextB",
+                                      "fill": "#3B82F6",
+                                      "content": "React",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "wwe91",
+                                  "name": "skillTagC",
+                                  "cornerRadius": 4,
+                                  "padding": [
+                                    10,
+                                    20
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "26Zbn",
+                                      "name": "skillTextC",
+                                      "fill": "#3B82F6",
+                                      "content": "Node.js",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "WPrD4",
+                                  "name": "skillTagD",
+                                  "cornerRadius": 4,
+                                  "padding": [
+                                    10,
+                                    20
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "RpIrZ",
+                                      "name": "skillTextD",
+                                      "fill": "#3B82F6",
+                                      "content": "Python",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "JAtaL",
+                          "name": "educationSectionNew",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "lD1tE",
+                              "name": "educationHeader",
+                              "width": "fill_container",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "royy7",
+                                  "name": "educationIcon",
+                                  "width": 32,
+                                  "height": 32,
+                                  "fill": {
+                                    "type": "gradient",
+                                    "gradientType": "linear",
+                                    "enabled": true,
+                                    "rotation": 0,
+                                    "size": {
+                                      "height": 1
+                                    },
+                                    "colors": [
+                                      {
+                                        "color": "#3B82F6",
+                                        "position": 0
+                                      },
+                                      {
+                                        "color": "#8B5CF6",
+                                        "position": 1
+                                      }
+                                    ]
+                                  },
+                                  "cornerRadius": 6,
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "W3d2b",
+                                      "name": "educationIconInner",
+                                      "width": 16,
+                                      "height": 16,
+                                      "iconFontName": "graduation-cap",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "#FFFFFF"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "xGPU4",
+                                  "name": "educationTitle",
+                                  "fill": "#1E293B",
+                                  "content": "学习经历",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "700"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "v4DYD",
+                              "name": "educationCard",
+                              "width": "fill_container",
+                              "fill": "#F8FAFC",
+                              "cornerRadius": 12,
+                              "stroke": {
+                                "align": "center",
+                                "thickness": 1,
+                                "fill": "#E2E8F0"
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 14,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "z4kmT",
+                                  "name": "educationCardHeader",
+                                  "width": "fill_container",
+                                  "justifyContent": "space_between",
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "ZuCbS",
+                                      "name": "universityInfo",
+                                      "layout": "vertical",
+                                      "gap": 4,
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "b0mJL",
+                                          "name": "universityNameText",
+                                          "fill": "#1E293B",
+                                          "content": "北京航空航天大学",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 16,
+                                          "fontWeight": "600"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "MlSdm",
+                                      "name": "periodInfo",
+                                      "layout": "vertical",
+                                      "gap": 4,
+                                      "alignItems": "end",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "KlFLe",
+                                          "name": "educationPeriodText",
+                                          "fill": "#64748B",
+                                          "content": "2016.09 - 2020.06",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 13,
+                                          "fontWeight": "500"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "OUgSM",
+                                  "name": "educationDetailRow",
+                                  "width": "fill_container",
+                                  "layout": "vertical",
+                                  "gap": 4,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "tdXzA",
+                                      "name": "educationDetailText",
+                                      "fill": "#3B82F6",
+                                      "content": "本科 · 计算机科学与技术",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "500"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "0KQTd",
+                      "name": "avatarSection",
+                      "width": "fill_container",
+                      "height": 246,
+                      "gap": 24,
+                      "padding": [
+                        100,
+                        60,
+                        80,
+                        60
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

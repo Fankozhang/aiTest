@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopping App UI</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+/* ===== 全局重置 ===== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #E5E5EA;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 40px;
+  justify-content: center;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== 页面容器 ===== */
+.page {
+  width: 402px;
+  background: #F2F2F7;
+  position: relative;
+  overflow: hidden;
+  border-radius: 40px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== 通用: 状态栏 ===== */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  height: 62px;
+  background: transparent;
+}
+.status-bar .time {
+  color: #1C1C1E;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.status-icons {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.status-icons i {
+  color: #1C1C1E;
+}
+
+/* ===== 通用: 搜索栏 ===== */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 36px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  border: 0.5px solid #C6C6C8;
+  padding: 0 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.search-bar i {
+  color: #8E8E93;
+}
+.search-bar span {
+  color: #C7C7CC;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* ===== 通用: 产品卡片 ===== */
+.product-card {
+  width: 169px;
+  height: 240px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+}
+.product-card .img-frame {
+  width: 100%;
+  height: 130px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F2F2F7;
+}
+.product-card .img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.product-name {
+  color: #1C1C1E;
+  font-size: 14px;
+  font-weight: 600;
+}
+.price-row {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.price-current {
+  color: #FF3B30;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+.price-original {
+  color: #8E8E93;
+  font-size: 12px;
+}
+
+/* ===== 通用: 底部导航 ===== */
+.bottom-nav {
+  width: 100%;
+  height: 84px;
+  background: transparent;
+  padding: 0 16px 20px;
+  display: flex;
+  justify-content: center;
+}
+.nav-pill {
+  width: 100%;
+  height: 62px;
+  background: #FFFFFF;
+  border-radius: 24px;
+  border: 0.5px solid #C6C6C8;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  display: flex;
+  padding: 4px;
+  justify-content: center;
+  align-items: center;
+}
+.nav-item {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 18px;
+}
+.nav-item.active {
+  background: #007AFF14;
+}
+.nav-item span {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.nav-item.active span {
+  color: #007AFF;
+}
+.nav-item:not(.active) span {
+  color: #8E8E93;
+}
+
+/* ===== 通用: 分隔线 ===== */
+.divider {
+  width: 100%;
+  height: 0.5px;
+  background: #E5E5EA;
+}
+
+/* ========================================
+   PAGE 1: HomePage
+   ======================================== */
+.page-home {
+  height: 1032px;
+}
+
+.home-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 8px 20px 0;
+}
+
+.category-section {
+  display: flex;
+  gap: 16px;
+}
+.category-item {
+  flex: 1;
+  height: 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+}
+.category-item span {
+  color: #3C3C43;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.banner-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+.banner-container {
+  width: 100%;
+  height: 200px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.banner-container img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.banner-overlay {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+.banner-title {
+  color: #FFFFFF;
+  font-size: 24px;
+  font-weight: 700;
+}
+.banner-desc {
+  color: #FFFFFF;
+  font-size: 15px;
+}
+.banner-btn {
+  width: 80px;
+  height: 32px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid #FFFFFF40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.banner-btn span {
+  color: #1C1C1E;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.section-header h2 {
+  color: #1C1C1E;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.section-header .more {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.section-header .more span {
+  color: #007AFF;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.products-row {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+/* ========================================
+   PAGE 2: ProductDetailPage
+   ======================================== */
+.page-detail {
+  height: 827px;
+  padding-bottom: 20px;
+}
+
+.detail-header {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background: transparent;
+}
+.header-btn {
+  width: 40px;
+  height: 40px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.header-title {
+  color: #1C1C1E;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+}
+
+.detail-image-section {
+  width: 100%;
+  height: 320px;
+  background: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.image-placeholder {
+  width: 280px;
+  height: 280px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.price-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 20px;
+}
+.price-row-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.current-price {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+.current-price .symbol {
+  color: #FF3B30;
+  font-size: 20px;
+  font-weight: 600;
+}
+.current-price .amount {
+  color: #FF3B30;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.original-price {
+  color: #8E8E93;
+  font-size: 16px;
+}
+.product-title-detail {
+  color: #1C1C1E;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+.product-tags {
+  display: flex;
+  gap: 8px;
+}
+.product-tags span {
+  font-size: 12px;
+  font-weight: 600;
+}
+.tag-free { color: #007AFF; }
+.tag-auth { color: #34C759; }
+
+.spec-section {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px 24px;
+  margin-top: 12px;
+}
+.spec-section h3 {
+  color: #1C1C1E;
+  font-size: 17px;
+  font-weight: 600;
+}
+.color-options {
+  display: flex;
+  gap: 12px;
+}
+.color-opt {
+  width: 80px;
+  height: 32px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+}
+.color-opt.selected {
+  background: #007AFF;
+  border: 0.5px solid #007AFF;
+  color: #FFFFFF;
+}
+.color-opt:not(.selected) {
+  border: 0.5px solid #C6C6C8;
+  color: #000000;
+}
+.size-options {
+  display: flex;
+  gap: 12px;
+}
+.size-opt {
+  width: 60px;
+  height: 32px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+}
+.size-opt.selected {
+  background: #007AFF;
+  border: 0.5px solid #007AFF;
+  color: #FFFFFF;
+}
+.size-opt:not(.selected) {
+  border: 0.5px solid #C6C6C8;
+  color: #000000;
+}
+
+.action-section {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  gap: 12px;
+  padding: 12px 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+.cart-btn {
+  width: 120px;
+  height: 52px;
+  background: #F2F2F7;
+  border-radius: 12px;
+  border: 1px solid #007AFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.cart-btn span {
+  color: #007AFF;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.buy-btn {
+  width: 220px;
+  height: 52px;
+  background: #007AFF;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.buy-btn span {
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* ========================================
+   PAGE 3: CategoryPage
+   ======================================== */
+.page-category {
+  height: 830px;
+}
+
+.category-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 8px 20px 12px;
+}
+
+.category-content {
+  width: 343px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 auto;
+}
+
+.side-menu {
+  width: 90px;
+  background: #FFFFFF;
+  box-shadow: 1px 0 4px rgba(0,0,0,0.03);
+  display: flex;
+  flex-direction: column;
+}
+.menu-item {
+  width: 100%;
+  height: 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.menu-item.active {
+  background: #007AFF;
+}
+.menu-item.active span {
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+}
+.menu-item:not(.active) {
+  background: transparent;
+}
+.menu-item:not(.active) span {
+  color: #3C3C43;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.category-main {
+  width: 246px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 16px 0;
+}
+
+.hot-category {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.hot-category h3 {
+  color: #000000;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.hot-grid {
+  display: flex;
+  gap: 12px;
+}
+.hot-item {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+  align-items: center;
+}
+.hot-item span {
+  color: #3C3C43;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.recommend-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.recommend-section h3 {
+  color: #000000;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.recommend-grid {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+.recommend-card {
+  flex: 1;
+  height: 200px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+}
+.recommend-card .card-img {
+  width: 100%;
+  height: 90px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F2F2F7;
+}
+.recommend-card .card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.recommend-card .card-name {
+  color: #000000;
+  font-size: 13px;
+  font-weight: 600;
+}
+.recommend-card .card-price {
+  color: #FF3B30;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* ========================================
+   PAGE 4: CartPage
+   ======================================== */
+.page-cart {
+  height: 474px;
+}
+
+.cart-header {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+.cart-header h2 {
+  color: #1C1C1E;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+}
+
+.cart-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px 20px;
+}
+
+.cart-item {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  align-items: flex-start;
+}
+.item-checkbox {
+  width: 22px;
+  height: 22px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.item-checkbox.checked {
+  background: #007AFF;
+}
+.item-checkbox:not(.checked) {
+  border: 1.5px solid #C6C6C8;
+}
+.item-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F2F2F7;
+  flex-shrink: 0;
+}
+.item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.item-detail {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.item-name {
+  color: #000000;
+  font-size: 15px;
+  font-weight: 600;
+}
+.item-spec {
+  color: #8E8E93;
+  font-size: 12px;
+}
+.item-price {
+  color: #FF3B30;
+  font-size: 16px;
+  font-weight: 700;
+}
+.quantity-control {
+  width: 80px;
+  height: 28px;
+  border-radius: 8px;
+  border: 0.5px solid #C6C6C8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+}
+.quantity-control span {
+  color: #000000;
+  font-size: 14px;
+}
+
+.checkout-bar {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  gap: 12px;
+  padding: 12px 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+.select-all {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.select-all .checkbox {
+  width: 22px;
+  height: 22px;
+  border-radius: 11px;
+  border: 1.5px solid #C6C6C8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.select-all span {
+  color: #000000;
+  font-size: 15px;
+}
+.price-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-end;
+}
+.price-info .label {
+  color: #000000;
+  font-size: 15px;
+}
+.price-info .total {
+  color: #FF3B30;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+.checkout-btn {
+  width: 120px;
+  height: 44px;
+  background: #007AFF;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.checkout-btn span {
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* ========================================
+   PAGE 5: ProfilePage
+   ======================================== */
+.page-profile {
+  height: 745px;
+  padding: 0 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  height: 44px;
+  margin: 0 -20px;
+}
+.profile-status-bar .time {
+  color: #000000;
+  font-size: 17px;
+  font-weight: 600;
+}
+.profile-status-bar .status-icons i {
+  color: #000000;
+}
+
+.profile-title {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  margin: 0 -20px;
+}
+.profile-title h1 {
+  color: #000000;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.profile-card {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 16px 20px;
+  position: relative;
+}
+.profile-user {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #007AFF;
+  flex-shrink: 0;
+}
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.user-name {
+  color: #000000;
+  font-size: 20px;
+  font-weight: 700;
+}
+.user-phone {
+  color: #8E8E93;
+  font-size: 14px;
+}
+.membership-btn {
+  position: absolute;
+  right: 20px;
+  top: 16px;
+  height: 36px;
+  background: #F2F2F7;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 12px;
+  cursor: pointer;
+}
+.membership-btn span {
+  color: #000000;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.order-card {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 20px;
+}
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.order-header h3 {
+  color: #000000;
+  font-size: 17px;
+  font-weight: 600;
+}
+.order-header .all-orders {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.order-header .all-orders span {
+  color: #8E8E93;
+  font-size: 13px;
+}
+.order-grid {
+  display: flex;
+  height: 60px;
+  justify-content: space-around;
+  align-items: center;
+}
+.order-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+  align-items: center;
+}
+.order-item span {
+  color: #3C3C43;
+  font-size: 11px;
+}
+
+.menu-card {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  padding: 4px 20px;
+}
+.menu-row {
+  width: 100%;
+  height: 52px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu-row .left {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.menu-row .left span {
+  color: #000000;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+
+<!-- =============================================
+     PAGE 1: HomePage
+     ============================================= -->
+<div class="page page-home">
+  <!-- 状态栏 -->
+  <div class="status-bar">
+    <span class="time">9:41</span>
+    <div class="status-icons">
+      <i data-lucide="signal" style="width:18px;height:18px"></i>
+      <i data-lucide="wifi" style="width:18px;height:18px"></i>
+      <i data-lucide="battery" style="width:18px;height:18px"></i>
+    </div>
+  </div>
+
+  <!-- 头部区域 -->
+  <div class="home-header">
+    <div class="search-bar">
+      <i data-lucide="search" style="width:16px;height:16px"></i>
+      <span>搜索商品、品牌</span>
+    </div>
+    <div class="category-section">
+      <div class="category-item">
+        <i data-lucide="shirt" style="width:24px;height:24px;color:#007AFF"></i>
+        <span>服装</span>
+      </div>
+      <div class="category-item">
+        <i data-lucide="smartphone" style="width:24px;height:24px;color:#FF3B30"></i>
+        <span>电子</span>
+      </div>
+      <div class="category-item">
+        <i data-lucide="sofa" style="width:24px;height:24px;color:#34C759"></i>
+        <span>家居</span>
+      </div>
+      <div class="category-item">
+        <i data-lucide="briefcase" style="width:24px;height:24px;color:#FF9500"></i>
+        <span>箱包</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Banner 区域 -->
+  <div class="banner-section">
+    <div class="banner-container">
+      <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=400&fit=crop" alt="Banner">
+      <div class="banner-overlay">
+        <span class="banner-title">新用户专享</span>
+        <span class="banner-desc">首单立减 50 元</span>
+        <div class="banner-btn"><span>立即领取</span></div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <h2>限时抢购</h2>
+      <div class="more">
+        <span>更多</span>
+        <i data-lucide="chevron-right" style="width:14px;height:14px;color:#007AFF"></i>
+      </div>
+    </div>
+
+    <div class="products-row">
+      <div class="product-card">
+        <div class="img-frame">
+          <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&h=300&fit=crop" alt="商品">
+        </div>
+        <div class="product-info">
+          <span class="product-name">时尚休闲外套</span>
+          <div class="price-row">
+            <span class="price-current">¥299</span>
+            <span class="price-original">¥599</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="img-frame">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop" alt="商品">
+        </div>
+        <div class="product-info">
+          <span class="product-name">智能运动手表</span>
+          <div class="price-row">
+            <span class="price-current">¥899</span>
+            <span class="price-original">¥1299</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="products-row">
+      <div class="product-card">
+        <div class="img-frame">
+          <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=300&fit=crop" alt="商品">
+        </div>
+        <div class="product-info">
+          <span class="product-name">真皮商务包</span>
+          <div class="price-row">
+            <span class="price-current">¥399</span>
+            <span class="price-original">¥699</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="img-frame">
+          <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&h=300&fit=crop" alt="商品">
+        </div>
+        <div class="product-info">
+          <span class="product-name">家用除螨仪</span>
+          <div class="price-row">
+            <span class="price-current">¥199</span>
+            <span class="price-original">¥399</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部导航 -->
+  <div class="bottom-nav">
+    <div class="nav-pill">
+      <div class="nav-item active">
+        <i data-lucide="house" style="width:24px;height:24px;color:#007AFF"></i>
+        <span>首页</span>
+      </div>
+      <div class="nav-item">
+        <i data-lucide="layout-grid" style="width:24px;height:24px;color:#8E8E93"></i>
+        <span>分类</span>
+      </div>
+      <div class="nav-item">
+        <i data-lucide="shopping-cart" style="width:24px;height:24px;color:#8E8E93"></i>
+        <span>购物车</span>
+      </div>
+      <div class="nav-item">
+        <i data-lucide="user" style="width:24px;height:24px;color:#8E8E93"></i>
+        <span>我的</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================
+     PAGE 2: ProductDetailPage
+     ============================================= -->
+<div class="page page-detail">
+  <!-- 状态栏 -->
+  <div class="status-bar">
+    <span class="time">9:41</span>
+    <div class="status-icons">
+      <i data-lucide="signal" style="width:16px;height:16px"></i>
+      <i data-lucide="wifi" style="width:16px;height:16px"></i>
+      <i data-lucide="battery" style="width:16px;height:16px"></i>
+    </div>
+  </div>
+
+  <!-- 头部 -->
+  <div class="detail-header">
+    <div class="header-btn"><i data-lucide="arrow-left" style="width:20px;height:20px;color:#007AFF"></i></div>
+    <span class="header-title">商品详情</span>
+    <div class="header-btn"><i data-lucide="share-2" style="width:20px;height:20px;color:#007AFF"></i></div>
+  </div>
+
+  <!-- 商品图片 -->
+  <div class="detail-image-section">
+    <div class="image-placeholder">
+      <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&h=600&fit=crop" alt="商品图片">
+    </div>
+  </div>
+
+  <!-- 价格区域 -->
+  <div class="price-section">
+    <div class="price-row-detail">
+      <div class="current-price">
+        <span class="symbol">¥</span>
+        <span class="amount">299</span>
+      </div>
+      <span class="original-price">¥599</span>
+    </div>
+    <span class="product-title-detail">时尚休闲外套 男士春秋薄款</span>
+    <div class="product-tags">
+      <span class="tag-free">包邮</span>
+      <span class="tag-auth">正品</span>
+    </div>
+  </div>
+
+  <!-- 规格选择 -->
+  <div class="spec-section">
+    <h3>规格</h3>
+    <div class="color-options">
+      <div class="color-opt selected">黑色</div>
+      <div class="color-opt">白色</div>
+      <div class="color-opt">灰色</div>
+    </div>
+    <h3>尺码</h3>
+    <div class="size-options">
+      <div class="size-opt">S</div>
+      <div class="size-opt selected">M</div>
+      <div class="size-opt">L</div>
+    </div>
+  </div>
+
+  <!-- 操作按钮 -->
+  <div class="action-section">
+    <div class="cart-btn"><span>加入购物车</span></div>
+    <div class="buy-btn"><span>立即购买</span></div>
+  </div>
+</div>
+
+<!-- =============================================
+     PAGE 3: CategoryPage
+     ============================================= -->
+<div class="page page-category">
+  <!-- 状态栏 -->
+  <div class="status-bar">
+    <span class="time">9:41</span>
+    <div class="status-icons">
+      <i data-lucide="signal" style="width:16px;height:16px"></i>
+      <i data-lucide="wifi" style="width:16px;height:16px"></i>
+      <i data-lucide="battery" style="width:16px;height:16px"></i>
+    </div>
+  </div>
+
+  <!-- 搜索头部 -->
+  <div class="category-header">
+    <div class="search-bar">
+      <i data-lucide="search" style="width:16px;height:16px"></i>
+      <span>搜索商品</span>
+    </div>
+  </div>
+
+  <!-- 内容区域 -->
+  <div class="category-content">
+    <!-- 侧边菜单 -->
+    <div class="side-menu">
+      <div class="menu-item active"><span>推荐</span></div>
+      <div class="menu-item"><span>男装</span></div>
+      <div class="menu-item"><span>女装</span></div>
+      <div class="menu-item"><span>鞋包</span></div>
+      <div class="menu-item"><span>配饰</span></div>
+    </div>
+
+    <!-- 主内容 -->
+    <div class="category-main">
+      <div class="hot-category">
+        <h3>热门分类</h3>
+        <div class="hot-grid">
+          <div class="hot-item">
+            <i data-lucide="shirt" style="width:28px;height:28px;color:#FF9500"></i>
+            <span>T恤</span>
+          </div>
+          <div class="hot-item">
+            <i data-lucide="pants" style="width:28px;height:28px;color:#34C759"></i>
+            <span>裤子</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="recommend-section">
+        <h3>为你推荐</h3>
+        <div class="recommend-grid">
+          <div class="recommend-card">
+            <div class="card-img">
+              <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300&h=400&fit=crop" alt="推荐">
+            </div>
+            <span class="card-name">女装连衣裙</span>
+            <span class="card-price">¥199</span>
+          </div>
+          <div class="recommend-card">
+            <div class="card-img">
+              <img src="https://images.unsplash.com/photo-1617136737635-162e779723f3?w=300&h=400&fit=crop" alt="推荐">
+            </div>
+            <span class="card-name">男士西装套装</span>
+            <span class="card-price">¥299</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================
+     PAGE 4: CartPage
+     ============================================= -->
+<div class="page page-cart">
+  <!-- 状态栏 -->
+  <div class="status-bar">
+    <span class="time">9:41</span>
+    <div class="status-icons">
+      <i data-lucide="signal" style="width:16px;height:16px"></i>
+      <i data-lucide="wifi" style="width:16px;height:16px"></i>
+      <i data-lucide="battery" style="width:16px;height:16px"></i>
+    </div>
+  </div>
+
+  <!-- 头部 -->
+  <div class="cart-header">
+    <h2>购物车 (3)</h2>
+  </div>
+
+  <!-- 购物车内容 -->
+  <div class="cart-content">
+    <!-- 商品 1 -->
+    <div class="cart-item">
+      <div class="item-checkbox checked">
+        <i data-lucide="check" style="width:14px;height:14px;color:#FFFFFF"></i>
+      </div>
+      <div class="item-image">
+        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=200&h=200&fit=crop" alt="商品">
+      </div>
+      <div class="item-detail">
+        <span class="item-name">时尚休闲外套</span>
+        <span class="item-spec">黑色 M码</span>
+        <span class="item-price">¥299</span>
+        <div class="quantity-control">
+          <i data-lucide="minus" style="width:14px;height:14px;color:#007AFF"></i>
+          <span>1</span>
+          <i data-lucide="plus" style="width:14px;height:14px;color:#007AFF"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- 商品 2 -->
+    <div class="cart-item">
+      <div class="item-checkbox"></div>
+      <div class="item-image">
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200&h=200&fit=crop" alt="商品">
+      </div>
+      <div class="item-detail">
+        <span class="item-name">智能运动手表</span>
+        <span class="item-spec">银色 标准版</span>
+        <span class="item-price">¥299</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 结算栏 -->
+  <div class="checkout-bar">
+    <div class="select-all">
+      <div class="checkbox">
+        <i data-lucide="check" style="width:12px;height:12px;color:#FFFFFF"></i>
+      </div>
+      <span>全选</span>
+    </div>
+    <div class="price-info">
+      <span class="label">合计:</span>
+      <span class="total">¥598</span>
+    </div>
+    <div class="checkout-btn"><span>结算(1)</span></div>
+  </div>
+</div>
+
+<!-- =============================================
+     PAGE 5: ProfilePage
+     ============================================= -->
+<div class="page page-profile">
+  <!-- 状态栏 -->
+  <div class="profile-status-bar">
+    <span class="time">9:41</span>
+    <div class="status-icons">
+      <i data-lucide="signal" style="width:16px;height:16px"></i>
+      <i data-lucide="wifi" style="width:16px;height:16px"></i>
+      <i data-lucide="battery" style="width:16px;height:16px"></i>
+    </div>
+  </div>
+
+  <!-- 标题 -->
+  <div class="profile-title">
+    <h1>我的</h1>
+  </div>
+
+  <!-- 用户信息卡片 -->
+  <div class="profile-card">
+    <div class="profile-user">
+      <div class="avatar"></div>
+      <div class="user-info">
+        <span class="user-name">张三</span>
+        <span class="user-phone">138****8888</span>
+      </div>
+    </div>
+    <div class="membership-btn">
+      <span>查看会员权益</span>
+      <i data-lucide="chevron-right" style="width:14px;height:14px;color:#8E8E93"></i>
+    </div>
+  </div>
+
+  <!-- 订单卡片 -->
+  <div class="order-card">
+    <div class="order-header">
+      <h3>我的订单</h3>
+      <div class="all-orders">
+        <span>全部订单</span>
+        <i data-lucide="chevron-right" style="width:14px;height:14px;color:#8E8E93"></i>
+      </div>
+    </div>
+    <div class="order-grid">
+      <div class="order-item">
+        <i data-lucide="wallet" style="width:24px;height:24px;color:#007AFF"></i>
+        <span>待付款</span>
+      </div>
+      <div class="order-item">
+        <i data-lucide="package" style="width:24px;height:24px;color:#FF9500"></i>
+        <span>待发货</span>
+      </div>
+      <div class="order-item">
+        <i data-lucide="truck" style="width:24px;height:24px;color:#34C759"></i>
+        <span>待收货</span>
+      </div>
+      <div class="order-item">
+        <i data-lucide="check-circle" style="width:24px;height:24px;color:#8E8E93"></i>
+        <span>已完成</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 功能菜单卡片 1 -->
+  <div class="menu-card">
+    <div class="menu-row">
+      <div class="left">
+        <i data-lucide="coins" style="width:22px;height:22px;color:#FF9500"></i>
+        <span>积分商城</span>
+      </div>
+      <i data-lucide="chevron-right" style="width:16px;height:16px;color:#C7C7CC"></i>
+    </div>
+    <div class="divider"></div>
+    <div class="menu-row">
+      <div class="left">
+        <i data-lucide="ticket" style="width:22px;height:22px;color:#FF3B30"></i>
+        <span>优惠券</span>
+      </div>
+      <i data-lucide="chevron-right" style="width:16px;height:16px;color:#C7C7CC"></i>
+    </div>
+    <div class="divider"></div>
+    <div class="menu-row">
+      <div class="left">
+        <i data-lucide="heart" style="width:22px;height:22px;color:#FF2D55"></i>
+        <span>我的收藏</span>
+      </div>
+      <i data-lucide="chevron-right" style="width:16px;height:16px;color:#C7C7CC"></i>
+    </div>
+  </div>
+
+  <!-- 功能菜单卡片 2 -->
+  <div class="menu-card">
+    <div class="menu-row">
+      <div class="left">
+        <i data-lucide="map-pin" style="width:22px;height:22px;color:#007AFF"></i>
+        <span>收货地址</span>
+      </div>
+      <i data-lucide="chevron-right" style="width:16px;height:16px;color:#C7C7CC"></i>
+    </div>
+    <div class="divider"></div>
+    <div class="menu-row">
+      <div class="left">
+        <i data-lucide="help-circle" style="width:22px;height:22px;color:#007AFF"></i>
+        <span>帮助与反馈</span>
+      </div>
+      <i data-lucide="chevron-right" style="width:16px;height:16px;color:#C7C7CC"></i>
+    </div>
+    <div class="divider"></div>
+    <div class="menu-row">
+      <div class="left">
+        <i data-lucide="settings" style="width:22px;height:22px;color:#8E8E93"></i>
+        <span>设置</span>
+      </div>
+      <i data-lucide="chevron-right" style="width:16px;height:16px;color:#C7C7CC"></i>
+    </div>
+  </div>
+</div>
+
+<!-- 初始化 Lucide 图标 -->
+<script>
+  lucide.createIcons();
+</script>
+
+</body>
+</html>

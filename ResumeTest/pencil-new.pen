@@ -1,0 +1,2650 @@
+{
+  "version": "2.9",
+  "children": [
+    {
+      "type": "frame",
+      "id": "bi8Au",
+      "x": 0,
+      "y": 0,
+      "name": "Frame",
+      "clip": true,
+      "width": 800,
+      "height": 600,
+      "fill": "#FFFFFF",
+      "layout": "none"
+    },
+    {
+      "type": "frame",
+      "id": "QCfPl",
+      "x": 0,
+      "y": 0,
+      "name": "Resume Editor Page",
+      "width": 1536,
+      "height": 1813,
+      "fill": "#FFFFFF",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "WxXtU",
+          "name": "navbar",
+          "width": "fill_container",
+          "height": 64,
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "outside",
+            "thickness": 1,
+            "fill": "#E2E8F0"
+          },
+          "padding": [
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "cUuIF",
+              "name": "logoArea",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "LRU4A",
+                  "name": "logoIcon",
+                  "width": 32,
+                  "height": 32,
+                  "fill": "#3B82F6",
+                  "cornerRadius": 8
+                },
+                {
+                  "type": "text",
+                  "id": "kmnVI",
+                  "name": "logoText",
+                  "fill": "#1E293B",
+                  "content": "简历编辑器",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "TMN1j",
+              "name": "downloadBtn",
+              "fill": "#3B82F6",
+              "cornerRadius": 8,
+              "gap": 8,
+              "padding": [
+                8,
+                20
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "BMrvc",
+                  "name": "downloadIcon",
+                  "fill": "#FFFFFF",
+                  "content": "↓",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "TvAj4",
+                  "name": "downloadText",
+                  "fill": "#FFFFFF",
+                  "content": "下载PDF",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "uVsWs",
+          "name": "mainContent",
+          "width": 1534,
+          "height": 1752,
+          "children": [
+            {
+              "type": "frame",
+              "id": "3WUnb",
+              "name": "leftPanel",
+              "clip": true,
+              "width": 610,
+              "height": 1749,
+              "fill": "#F8FAFC",
+              "stroke": {
+                "align": "outside",
+                "thickness": 1,
+                "fill": "#E2E8F0"
+              },
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "bPbME",
+                  "name": "leftScroll",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "layout": "vertical",
+                  "gap": 20,
+                  "padding": 24,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "zAnoy",
+                      "name": "headerWrap",
+                      "width": "fill_container",
+                      "height": 104,
+                      "layout": "vertical",
+                      "gap": 12,
+                      "padding": [
+                        20,
+                        20,
+                        0,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "2LLgR",
+                          "name": "topLine",
+                          "width": "fill_container",
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "ihdKc",
+                              "name": "title",
+                              "fill": "#1A1A1A",
+                              "content": "编辑简历",
+                              "fontFamily": "Inter",
+                              "fontSize": 22,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "fXOlx",
+                              "name": "desc",
+                              "fill": "#888888",
+                              "content": "填写您的个人信息，实时预览简历效果",
+                              "textAlign": "center",
+                              "textAlignVertical": "bottom",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "re6Nb",
+                          "name": "btnRow",
+                          "gap": 10,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "BVg5J",
+                              "name": "saveBtn",
+                              "fill": "#3B82F6",
+                              "cornerRadius": 8,
+                              "gap": 6,
+                              "padding": [
+                                8,
+                                16
+                              ],
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "hwz4Z",
+                                  "name": "saveIcon",
+                                  "content": "💾",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "taXqr",
+                                  "name": "saveText",
+                                  "fill": "#FFFFFF",
+                                  "content": "保存简历信息",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "YfVWh",
+                              "name": "deleteBtn",
+                              "fill": "#FFFFFF",
+                              "cornerRadius": 8,
+                              "stroke": {
+                                "align": "outside",
+                                "thickness": 1,
+                                "fill": "#E5E5E5"
+                              },
+                              "gap": 6,
+                              "padding": [
+                                8,
+                                16
+                              ],
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "8DvqX",
+                                  "name": "deleteIcon",
+                                  "content": "🗑",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "n2q7k",
+                                  "name": "deleteText",
+                                  "fill": "#888888",
+                                  "content": "删除简历信息",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Ph4TY",
+                      "name": "card1",
+                      "width": 557,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "outside",
+                        "thickness": 1,
+                        "fill": "#E2E8F0"
+                      },
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "zU6J5",
+                          "name": "card1Header",
+                          "width": "fill_container",
+                          "padding": [
+                            16,
+                            20
+                          ],
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "9zWrm",
+                              "name": "card1TitleArea",
+                              "width": 66,
+                              "height": 23,
+                              "gap": 10,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "sIXyd",
+                                  "name": "card1Icon",
+                                  "fill": "#1E293B",
+                                  "content": "👤",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "CdLAs",
+                                  "name": "card1Title",
+                                  "fill": "#1E293B",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fit_content(65)",
+                                  "content": "个人信息",
+                                  "textAlignVertical": "middle",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "zsUjD",
+                          "name": "card1Body",
+                          "width": 522,
+                          "fill": "#FFFFFF",
+                          "stroke": {
+                            "align": "outside",
+                            "thickness": 0,
+                            "fill": "#F1F5F9"
+                          },
+                          "layout": "vertical",
+                          "gap": 14,
+                          "padding": [
+                            0,
+                            20,
+                            20,
+                            20
+                          ],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "rqAxj",
+                              "name": "itemWrap",
+                              "width": 518,
+                              "fill": "#F8FAFC",
+                              "cornerRadius": 8,
+                              "stroke": {
+                                "align": "outside",
+                                "thickness": 1,
+                                "fill": "#E2E8F0"
+                              },
+                              "layout": "vertical",
+                              "gap": 14,
+                              "padding": 14,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "aC5A2",
+                                  "name": "row1",
+                                  "width": "fill_container",
+                                  "gap": 12,
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "QJi0X",
+                                      "name": "col1",
+                                      "width": "fill_container",
+                                      "layout": "vertical",
+                                      "gap": 8,
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "qwbjO",
+                                          "name": "label1",
+                                          "fill": "#374151",
+                                          "content": "姓名",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 13,
+                                          "fontWeight": "500"
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "Ucm1O",
+                                          "name": "input1",
+                                          "width": "fill_container",
+                                          "height": 44,
+                                          "fill": "#FFFFFF",
+                                          "cornerRadius": 8,
+                                          "stroke": {
+                                            "align": "outside",
+                                            "thickness": 1,
+                                            "fill": "#D1D5DB"
+                                          },
+                                          "padding": [
+                                            0,
+                                            12
+                                          ],
+                                          "justifyContent": "center",
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "gGV7J",
+                                              "name": "input1Text",
+                                              "fill": "#1E293B",
+                                              "content": "张三",
+                                              "textAlign": "center",
+                                              "textAlignVertical": "middle",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 14,
+                                              "fontWeight": "normal"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "1wuiA",
+                                      "name": "col2",
+                                      "width": "fill_container",
+                                      "layout": "vertical",
+                                      "gap": 8,
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "WlA3a",
+                                          "name": "label2",
+                                          "fill": "#374151",
+                                          "content": "职位",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 13,
+                                          "fontWeight": "500"
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "1GiSw",
+                                          "name": "input2",
+                                          "width": "fill_container",
+                                          "height": 44,
+                                          "fill": "#FFFFFF",
+                                          "cornerRadius": 8,
+                                          "stroke": {
+                                            "align": "outside",
+                                            "thickness": 1,
+                                            "fill": "#D1D5DB"
+                                          },
+                                          "padding": [
+                                            0,
+                                            12
+                                          ],
+                                          "justifyContent": "center",
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "U58LP",
+                                              "name": "input2Text",
+                                              "fill": "#1E293B",
+                                              "content": "前端开发工程师",
+                                              "textAlign": "center",
+                                              "textAlignVertical": "middle",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 14,
+                                              "fontWeight": "normal"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "pKZX2",
+                                  "name": "row2",
+                                  "width": "fill_container",
+                                  "gap": 12,
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "GBnRf",
+                                      "name": "col3",
+                                      "width": "fill_container",
+                                      "layout": "vertical",
+                                      "gap": 8,
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "kvYTL",
+                                          "name": "label3",
+                                          "fill": "#374151",
+                                          "content": "邮箱",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 13,
+                                          "fontWeight": "500"
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "5a0wR",
+                                          "name": "input3",
+                                          "width": "fill_container",
+                                          "height": 44,
+                                          "fill": "#FFFFFF",
+                                          "cornerRadius": 8,
+                                          "stroke": {
+                                            "align": "outside",
+                                            "thickness": 1,
+                                            "fill": "#D1D5DB"
+                                          },
+                                          "padding": [
+                                            0,
+                                            12
+                                          ],
+                                          "justifyContent": "center",
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "CHTtC",
+                                              "name": "input3Text",
+                                              "fill": "#94A3B8",
+                                              "content": "zhangsan@email.com",
+                                              "textAlign": "center",
+                                              "textAlignVertical": "middle",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 14,
+                                              "fontWeight": "normal"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "YIPlx",
+                                      "name": "col4",
+                                      "width": "fill_container",
+                                      "layout": "vertical",
+                                      "gap": 8,
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "9Om1j",
+                                          "name": "label4",
+                                          "fill": "#374151",
+                                          "content": "电话",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 13,
+                                          "fontWeight": "500"
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "EbYZ3",
+                                          "name": "input4",
+                                          "width": "fill_container",
+                                          "height": 44,
+                                          "fill": "#FFFFFF",
+                                          "cornerRadius": 8,
+                                          "stroke": {
+                                            "align": "outside",
+                                            "thickness": 1,
+                                            "fill": "#D1D5DB"
+                                          },
+                                          "padding": [
+                                            0,
+                                            12
+                                          ],
+                                          "justifyContent": "center",
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "QoZmk",
+                                              "name": "input4Text",
+                                              "fill": "#94A3B8",
+                                              "content": "+86 138-0000-0000",
+                                              "textAlign": "center",
+                                              "textAlignVertical": "middle",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 14,
+                                              "fontWeight": "normal"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "nR3qW",
+                                  "name": "row3",
+                                  "width": "fill_container",
+                                  "gap": 12,
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "kL7mN",
+                                      "name": "col5",
+                                      "width": "fill_container",
+                                      "layout": "vertical",
+                                      "gap": 8,
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "pQ9sT",
+                                          "name": "label5",
+                                          "fill": "#374151",
+                                          "content": "年龄",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 13,
+                                          "fontWeight": "500"
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "uV2wX",
+                                          "name": "input5",
+                                          "width": "fill_container",
+                                          "height": 44,
+                                          "fill": "#FFFFFF",
+                                          "cornerRadius": 8,
+                                          "stroke": {
+                                            "align": "outside",
+                                            "thickness": 1,
+                                            "fill": "#D1D5DB"
+                                          },
+                                          "padding": [
+                                            0,
+                                            12
+                                          ],
+                                          "justifyContent": "center",
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "yZ4aB",
+                                              "name": "input5Text",
+                                              "fill": "#94A3B8",
+                                              "content": "28",
+                                              "textAlign": "center",
+                                              "textAlignVertical": "middle",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 14,
+                                              "fontWeight": "normal"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "cD6eF",
+                                      "name": "col6",
+                                      "width": "fill_container",
+                                      "layout": "vertical",
+                                      "gap": 8,
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "gH8iJ",
+                                          "name": "label6",
+                                          "fill": "#374151",
+                                          "content": "工作年限",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 13,
+                                          "fontWeight": "500"
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "kL0mN",
+                                          "name": "input6",
+                                          "width": "fill_container",
+                                          "height": 44,
+                                          "fill": "#FFFFFF",
+                                          "cornerRadius": 8,
+                                          "stroke": {
+                                            "align": "outside",
+                                            "thickness": 1,
+                                            "fill": "#D1D5DB"
+                                          },
+                                          "padding": [
+                                            0,
+                                            12
+                                          ],
+                                          "justifyContent": "center",
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "oP2qR",
+                                              "name": "input6Text",
+                                              "fill": "#94A3B8",
+                                              "content": "5年",
+                                              "textAlign": "center",
+                                              "textAlignVertical": "middle",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 14,
+                                              "fontWeight": "normal"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "tsLL1",
+                                  "name": "label7",
+                                  "fill": "#374151",
+                                  "content": "个人简介",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "mGRJR",
+                                  "name": "input7",
+                                  "width": "fill_container",
+                                  "height": 80,
+                                  "fill": "#FFFFFF",
+                                  "cornerRadius": 8,
+                                  "stroke": {
+                                    "align": "outside",
+                                    "thickness": 1,
+                                    "fill": "#D1D5DB"
+                                  },
+                                  "padding": 12,
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "Nrxs6",
+                                      "name": "input7Text",
+                                      "fill": "#94A3B8",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "简要描述您的职业背景和核心优势...",
+                                      "textAlign": "center",
+                                      "textAlignVertical": "middle",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "TpxHN",
+                      "name": "card2",
+                      "width": "fill_container",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "outside",
+                        "thickness": 1,
+                        "fill": "#E2E8F0"
+                      },
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "BtnZO",
+                          "name": "card2Header",
+                          "width": "fill_container",
+                          "padding": [
+                            16,
+                            20
+                          ],
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "mPp9G",
+                              "name": "card2TitleArea",
+                              "gap": 10,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "EmwKH",
+                                  "name": "card2Icon",
+                                  "fill": "#1E293B",
+                                  "content": "💼",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "R7eSv",
+                                  "name": "card2Title",
+                                  "fill": "#1E293B",
+                                  "content": "工作经历",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "VkmBt",
+                          "name": "card2Body",
+                          "width": "fill_container",
+                          "stroke": {
+                            "align": "outside",
+                            "thickness": 0,
+                            "fill": "#F1F5F9"
+                          },
+                          "layout": "vertical",
+                          "gap": 14,
+                          "padding": [
+                            0,
+                            20,
+                            20,
+                            20
+                          ],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "w7H9a",
+                              "name": "workItem1",
+                              "rotation": 0.07668521856235304,
+                              "width": "fill_container",
+                              "fill": "#F8FAFC",
+                              "cornerRadius": 8,
+                              "stroke": {
+                                "align": "outside",
+                                "thickness": 1,
+                                "fill": "#E2E8F0"
+                              },
+                              "layout": "vertical",
+                              "gap": 12,
+                              "padding": 14,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "tAhQ6",
+                                  "name": "deleteBtn1",
+                                  "width": "fill_container",
+                                  "height": 36,
+                                  "fill": "#FEF2F2",
+                                  "cornerRadius": 6,
+                                  "gap": 6,
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "rRyNd",
+                                      "name": "deleteText1",
+                                      "fill": "#EF4444",
+                                      "content": "删除此条经历",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 13,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "T7Fw2",
+                                  "name": "wr1",
+                                  "width": "fill_container",
+                                  "gap": 10,
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "jJTnk",
+                                      "name": "wc1",
+                                      "width": "fill_container",
+                                      "layout": "vertical",
+                                      "gap": 6,
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "StSqs",
+                                          "name": "wl1",
+                                          "fill": "#374151",
+                                          "content": "公司名称",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 12,
+                                          "fontWeight": "500"
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "M6MTi",
+                                          "name": "wi1",
+                                          "width": "fill_container",
+                                          "height": 40,
+                                          "fill": "#FFFFFF",
+                                          "cornerRadius": 6,
+                                          "stroke": {
+                                            "align": "outside",
+                                            "thickness": 1,
+                                            "fill": "#D1D5DB"
+                                          },
+                                          "padding": [
+                                            0,
+                                            10
+                                          ],
+                                          "justifyContent": "center",
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "EUDua",
+                                              "name": "wt1",
+                                              "fill": "#1E293B",
+                                              "content": "阿里巴巴集团",
+                                              "textAlign": "center",
+                                              "textAlignVertical": "middle",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 13,
+                                              "fontWeight": "normal"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "Daazw",
+                                      "name": "wc2",
+                                      "width": "fill_container",
+                                      "layout": "vertical",
+                                      "gap": 6,
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "0wSrO",
+                                          "name": "wl2",
+                                          "fill": "#374151",
+                                          "content": "职位",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 12,
+                                          "fontWeight": "500"
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "G07zy",
+                                          "name": "wi2",
+                                          "width": "fill_container",
+                                          "height": 40,
+                                          "fill": "#FFFFFF",
+                                          "cornerRadius": 6,
+                                          "stroke": {
+                                            "align": "outside",
+                                            "thickness": 1,
+                                            "fill": "#D1D5DB"
+                                          },
+                                          "padding": [
+                                            0,
+                                            10
+                                          ],
+                                          "justifyContent": "center",
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "Wtn34",
+                                              "name": "wt2",
+                                              "fill": "#1E293B",
+                                              "content": "高级前端工程师",
+                                              "textAlign": "center",
+                                              "textAlignVertical": "middle",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 13,
+                                              "fontWeight": "normal"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "YXkQX",
+                                  "name": "wr2",
+                                  "width": "fill_container",
+                                  "gap": 10,
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "vJqHE",
+                                      "name": "wc3",
+                                      "width": "fill_container",
+                                      "layout": "vertical",
+                                      "gap": 6,
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "5f3aq",
+                                          "name": "wl3",
+                                          "fill": "#374151",
+                                          "content": "时间段",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 12,
+                                          "fontWeight": "500"
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "vmCyO",
+                                          "name": "wi3",
+                                          "width": "fill_container",
+                                          "height": 40,
+                                          "fill": "#FFFFFF",
+                                          "cornerRadius": 6,
+                                          "stroke": {
+                                            "align": "outside",
+                                            "thickness": 1,
+                                            "fill": "#D1D5DB"
+                                          },
+                                          "padding": [
+                                            0,
+                                            10
+                                          ],
+                                          "justifyContent": "center",
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "mshzr",
+                                              "name": "wt3",
+                                              "fill": "#94A3B8",
+                                              "content": "2021.06 - 至今",
+                                              "textAlign": "center",
+                                              "textAlignVertical": "middle",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 13,
+                                              "fontWeight": "normal"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "NhFy6",
+                                  "name": "wl4",
+                                  "fill": "#374151",
+                                  "content": "工作描述",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "I9q33",
+                                  "name": "wi4",
+                                  "width": "fill_container",
+                                  "height": 60,
+                                  "fill": "#FFFFFF",
+                                  "cornerRadius": 6,
+                                  "stroke": {
+                                    "align": "outside",
+                                    "thickness": 1,
+                                    "fill": "#D1D5DB"
+                                  },
+                                  "padding": 10,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "ymNwI",
+                                      "name": "wt4",
+                                      "fill": "#94A3B8",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "负责公司核心业务前端架构设计与开发...",
+                                      "textAlign": "center",
+                                      "textAlignVertical": "middle",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 13,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "D4Ja1",
+                              "name": "addWorkBtn",
+                              "width": "fill_container",
+                              "height": 40,
+                              "fill": "#F0F9FF",
+                              "cornerRadius": 8,
+                              "stroke": {
+                                "align": "outside",
+                                "thickness": 1,
+                                "fill": "#BAE6FD"
+                              },
+                              "gap": 8,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "EKeUZ",
+                                  "name": "addWorkIcon",
+                                  "fill": "#3B82F6",
+                                  "content": "+",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "odW8U",
+                                  "name": "addWorkText",
+                                  "fill": "#3B82F6",
+                                  "content": "添加工作经历",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "4Ecia",
+                      "name": "card3",
+                      "width": "fill_container",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "outside",
+                        "thickness": 1,
+                        "fill": "#E2E8F0"
+                      },
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "MPpyU",
+                          "name": "card3Header",
+                          "width": "fill_container",
+                          "padding": [
+                            16,
+                            20
+                          ],
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "2QpRw",
+                              "name": "card3TitleArea",
+                              "gap": 10,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "4rppZ",
+                                  "name": "card3Icon",
+                                  "fill": "#1E293B",
+                                  "content": "🎓",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "S8xMC",
+                                  "name": "card3Title",
+                                  "fill": "#1E293B",
+                                  "content": "教育背景",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "7pfyp",
+                          "name": "card3Body",
+                          "width": "fill_container",
+                          "stroke": {
+                            "align": "outside",
+                            "thickness": 0,
+                            "fill": "#F1F5F9"
+                          },
+                          "layout": "vertical",
+                          "gap": 14,
+                          "padding": [
+                            0,
+                            20,
+                            20,
+                            20
+                          ],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "mSKkW",
+                              "name": "eduItem1",
+                              "width": "fill_container",
+                              "fill": "#F8FAFC",
+                              "cornerRadius": 8,
+                              "stroke": {
+                                "align": "outside",
+                                "thickness": 1,
+                                "fill": "#E2E8F0"
+                              },
+                              "layout": "vertical",
+                              "gap": 12,
+                              "padding": 14,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "jyfOF",
+                                  "name": "deleteBtn2",
+                                  "width": "fill_container",
+                                  "height": 36,
+                                  "fill": "#FEF2F2",
+                                  "cornerRadius": 6,
+                                  "gap": 6,
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "oWrTI",
+                                      "name": "deleteText2",
+                                      "fill": "#EF4444",
+                                      "content": "删除此条经历",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 13,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "U7Rmx",
+                                  "name": "er1",
+                                  "width": "fill_container",
+                                  "gap": 10,
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "JfzN9",
+                                      "name": "ec1",
+                                      "width": "fill_container",
+                                      "layout": "vertical",
+                                      "gap": 6,
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "7fNn2",
+                                          "name": "el1",
+                                          "fill": "#374151",
+                                          "content": "学校名称",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 12,
+                                          "fontWeight": "500"
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "qqZWL",
+                                          "name": "ei1",
+                                          "width": "fill_container",
+                                          "height": 40,
+                                          "fill": "#FFFFFF",
+                                          "cornerRadius": 6,
+                                          "stroke": {
+                                            "align": "outside",
+                                            "thickness": 1,
+                                            "fill": "#D1D5DB"
+                                          },
+                                          "padding": [
+                                            0,
+                                            10
+                                          ],
+                                          "justifyContent": "center",
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "Mpaap",
+                                              "name": "et1",
+                                              "fill": "#1E293B",
+                                              "content": "北京大学",
+                                              "textAlign": "center",
+                                              "textAlignVertical": "middle",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 13,
+                                              "fontWeight": "normal"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "XIuJc",
+                                      "name": "ec2",
+                                      "width": "fill_container",
+                                      "layout": "vertical",
+                                      "gap": 6,
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "Wo9tf",
+                                          "name": "el2",
+                                          "fill": "#374151",
+                                          "content": "学历",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 12,
+                                          "fontWeight": "500"
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "a5WRC",
+                                          "name": "ei2",
+                                          "width": "fill_container",
+                                          "height": 40,
+                                          "fill": "#FFFFFF",
+                                          "cornerRadius": 6,
+                                          "stroke": {
+                                            "align": "outside",
+                                            "thickness": 1,
+                                            "fill": "#D1D5DB"
+                                          },
+                                          "padding": [
+                                            0,
+                                            10
+                                          ],
+                                          "justifyContent": "center",
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "eHCrO",
+                                              "name": "et2",
+                                              "fill": "#1E293B",
+                                              "content": "本科",
+                                              "textAlign": "center",
+                                              "textAlignVertical": "middle",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 13,
+                                              "fontWeight": "normal"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "Sp0qK",
+                                  "name": "er2",
+                                  "width": "fill_container",
+                                  "gap": 10,
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "7nngC",
+                                      "name": "ec3",
+                                      "width": "fill_container",
+                                      "layout": "vertical",
+                                      "gap": 6,
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "VnYK6",
+                                          "name": "el3",
+                                          "fill": "#374151",
+                                          "content": "专业",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 12,
+                                          "fontWeight": "500"
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "vnjfd",
+                                          "name": "ei3",
+                                          "width": "fill_container",
+                                          "height": 40,
+                                          "fill": "#FFFFFF",
+                                          "cornerRadius": 6,
+                                          "stroke": {
+                                            "align": "outside",
+                                            "thickness": 1,
+                                            "fill": "#D1D5DB"
+                                          },
+                                          "padding": [
+                                            0,
+                                            10
+                                          ],
+                                          "justifyContent": "center",
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "kAWOr",
+                                              "name": "et3",
+                                              "fill": "#1E293B",
+                                              "content": "计算机科学与技术",
+                                              "textAlign": "center",
+                                              "textAlignVertical": "middle",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 13,
+                                              "fontWeight": "normal"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "vxcyU",
+                                      "name": "ec4",
+                                      "width": "fill_container",
+                                      "layout": "vertical",
+                                      "gap": 6,
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "yADnL",
+                                          "name": "el4",
+                                          "fill": "#374151",
+                                          "content": "在校时间",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 12,
+                                          "fontWeight": "500"
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "R06s6",
+                                          "name": "ei4",
+                                          "width": "fill_container",
+                                          "height": 40,
+                                          "fill": "#FFFFFF",
+                                          "cornerRadius": 6,
+                                          "stroke": {
+                                            "align": "outside",
+                                            "thickness": 1,
+                                            "fill": "#D1D5DB"
+                                          },
+                                          "padding": [
+                                            0,
+                                            10
+                                          ],
+                                          "justifyContent": "center",
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "CtVpv",
+                                              "name": "et4",
+                                              "fill": "#94A3B8",
+                                              "content": "2017.09 - 2021.06",
+                                              "textAlign": "center",
+                                              "textAlignVertical": "middle",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 13,
+                                              "fontWeight": "normal"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "s02hI",
+                              "name": "addEduBtn",
+                              "width": "fill_container",
+                              "height": 40,
+                              "fill": "#F0F9FF",
+                              "cornerRadius": 8,
+                              "stroke": {
+                                "align": "outside",
+                                "thickness": 1,
+                                "fill": "#BAE6FD"
+                              },
+                              "gap": 8,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "C001A",
+                                  "name": "addEduIcon",
+                                  "fill": "#3B82F6",
+                                  "content": "+",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "Rw2o7",
+                                  "name": "addEduText",
+                                  "fill": "#3B82F6",
+                                  "content": "添加教育经历",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "dEXhE",
+                      "name": "card4",
+                      "width": "fill_container",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "outside",
+                        "thickness": 1,
+                        "fill": "#E2E8F0"
+                      },
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "EK4w0",
+                          "name": "card4Header",
+                          "width": "fill_container",
+                          "padding": [
+                            16,
+                            20
+                          ],
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "ivWPS",
+                              "name": "card4TitleArea",
+                              "gap": 10,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "6ruUw",
+                                  "name": "card4Icon",
+                                  "fill": "#1E293B",
+                                  "content": "⚡",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "VFpWF",
+                                  "name": "card4Title",
+                                  "fill": "#1E293B",
+                                  "content": "技能标签",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "yRKRS",
+                          "name": "card4Body",
+                          "width": "fill_container",
+                          "stroke": {
+                            "align": "outside",
+                            "thickness": 0,
+                            "fill": "#F1F5F9"
+                          },
+                          "layout": "vertical",
+                          "gap": 14,
+                          "padding": [
+                            0,
+                            20,
+                            20,
+                            20
+                          ],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "CF6H9",
+                              "name": "skillInputArea",
+                              "width": "fill_container",
+                              "height": 44,
+                              "fill": "#F8FAFC",
+                              "cornerRadius": 8,
+                              "stroke": {
+                                "align": "outside",
+                                "thickness": 1,
+                                "fill": "#D1D5DB"
+                              },
+                              "padding": [
+                                0,
+                                10,
+                                0,
+                                12
+                              ],
+                              "justifyContent": "space_between",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "RjtFh",
+                                  "name": "skillPlaceholder",
+                                  "fill": "#94A3B8",
+                                  "content": "输入技能名称后按回车添加...",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "AXTZB",
+                                  "name": "skillAddBtn",
+                                  "width": 28,
+                                  "height": 28,
+                                  "fill": "#3B82F6",
+                                  "cornerRadius": 6,
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "E3Bl2",
+                                      "name": "skillAddIcon",
+                                      "fill": "#FFFFFF",
+                                      "content": "+",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 16,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "bdtEY",
+                              "name": "skillsRow1",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "SKFEc",
+                                  "name": "tag1",
+                                  "fill": "#EFF6FF",
+                                  "cornerRadius": 20,
+                                  "stroke": {
+                                    "align": "outside",
+                                    "thickness": 1,
+                                    "fill": "#BFDBFE"
+                                  },
+                                  "gap": 6,
+                                  "padding": [
+                                    6,
+                                    12
+                                  ],
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "iRSQx",
+                                      "name": "tag1Text",
+                                      "fill": "#1D4ED8",
+                                      "content": "JavaScript",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 13,
+                                      "fontWeight": "normal"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "4AXYP",
+                                      "name": "tag1Close",
+                                      "fill": "#60A5FA",
+                                      "content": "×",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "mm7B0",
+                                  "name": "tag2",
+                                  "fill": "#EFF6FF",
+                                  "cornerRadius": 20,
+                                  "stroke": {
+                                    "align": "outside",
+                                    "thickness": 1,
+                                    "fill": "#BFDBFE"
+                                  },
+                                  "gap": 6,
+                                  "padding": [
+                                    6,
+                                    12
+                                  ],
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "0T0Ql",
+                                      "name": "tag2Text",
+                                      "fill": "#1D4ED8",
+                                      "content": "Vue.js",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 13,
+                                      "fontWeight": "normal"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "DPm12",
+                                      "name": "tag2Close",
+                                      "fill": "#60A5FA",
+                                      "content": "×",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "13fET",
+                                  "name": "tag3",
+                                  "fill": "#EFF6FF",
+                                  "cornerRadius": 20,
+                                  "stroke": {
+                                    "align": "outside",
+                                    "thickness": 1,
+                                    "fill": "#BFDBFE"
+                                  },
+                                  "gap": 6,
+                                  "padding": [
+                                    6,
+                                    12
+                                  ],
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "2aJ0M",
+                                      "name": "tag3Text",
+                                      "fill": "#1D4ED8",
+                                      "content": "React",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 13,
+                                      "fontWeight": "normal"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "loU0h",
+                                      "name": "tag3Close",
+                                      "fill": "#60A5FA",
+                                      "content": "×",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "nQ2FI",
+                              "name": "skillsRow2",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "ICidK",
+                                  "name": "tag4",
+                                  "fill": "#EFF6FF",
+                                  "cornerRadius": 20,
+                                  "stroke": {
+                                    "align": "outside",
+                                    "thickness": 1,
+                                    "fill": "#BFDBFE"
+                                  },
+                                  "gap": 6,
+                                  "padding": [
+                                    6,
+                                    12
+                                  ],
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "iUbpz",
+                                      "name": "tag4Text",
+                                      "fill": "#1D4ED8",
+                                      "content": "TypeScript",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 13,
+                                      "fontWeight": "normal"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "EDXVi",
+                                      "name": "tag4Close",
+                                      "fill": "#60A5FA",
+                                      "content": "×",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "vE2Gb",
+                                  "name": "tag5",
+                                  "fill": "#EFF6FF",
+                                  "cornerRadius": 20,
+                                  "stroke": {
+                                    "align": "outside",
+                                    "thickness": 1,
+                                    "fill": "#BFDBFE"
+                                  },
+                                  "gap": 6,
+                                  "padding": [
+                                    6,
+                                    12
+                                  ],
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "jHDqP",
+                                      "name": "tag5Text",
+                                      "fill": "#1D4ED8",
+                                      "content": "Node.js",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 13,
+                                      "fontWeight": "normal"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "qbiEl",
+                                      "name": "tag5Close",
+                                      "fill": "#60A5FA",
+                                      "content": "×",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "v6LMw",
+                                  "name": "tag6",
+                                  "fill": "#EFF6FF",
+                                  "cornerRadius": 20,
+                                  "stroke": {
+                                    "align": "outside",
+                                    "thickness": 1,
+                                    "fill": "#BFDBFE"
+                                  },
+                                  "gap": 6,
+                                  "padding": [
+                                    6,
+                                    12
+                                  ],
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "ENQPE",
+                                      "name": "tag6Text",
+                                      "fill": "#1D4ED8",
+                                      "content": "CSS",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 13,
+                                      "fontWeight": "normal"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "WvJD4",
+                                      "name": "tag6Close",
+                                      "fill": "#60A5FA",
+                                      "content": "×",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "TBkVI",
+                              "name": "addSkillBtn",
+                              "width": "fill_container",
+                              "height": 40,
+                              "fill": "#F0F9FF",
+                              "cornerRadius": 8,
+                              "stroke": {
+                                "align": "outside",
+                                "thickness": 1,
+                                "fill": "#BAE6FD"
+                              },
+                              "gap": 8,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "QqX5E",
+                                  "name": "addSkillIcon",
+                                  "fill": "#3B82F6",
+                                  "content": "+",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "hWbhD",
+                                  "name": "addSkillText",
+                                  "fill": "#3B82F6",
+                                  "content": "添加技能标签",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tErn4",
+              "name": "rightPanel",
+              "clip": true,
+              "width": 926,
+              "height": 1752,
+              "fill": "#F1F5F9",
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "nFJTw",
+                  "name": "rightInner",
+                  "width": "fill_container",
+                  "height": 1930,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "RTM5K",
+                      "name": "toolbarArea",
+                      "width": "fill_container",
+                      "padding": [
+                        12,
+                        16,
+                        0,
+                        0
+                      ],
+                      "justifyContent": "end",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "BpfHL",
+                          "name": "toolbarFrame",
+                          "fill": "#FFFFFFCC",
+                          "cornerRadius": 10,
+                          "effect": {
+                            "type": "shadow",
+                            "shadowType": "outer",
+                            "color": "#0000001A",
+                            "offset": {
+                              "x": 0,
+                              "y": 2
+                            },
+                            "blur": 8
+                          },
+                          "gap": 4,
+                          "padding": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "udVsW",
+                              "name": "tb1",
+                              "width": 32,
+                              "height": 32,
+                              "fill": "#F8FAFC",
+                              "cornerRadius": 6,
+                              "stroke": {
+                                "align": "outside",
+                                "thickness": 1,
+                                "fill": "#E2E8F0"
+                              },
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "if2pJ",
+                                  "name": "tb1i",
+                                  "fill": "#64748B",
+                                  "content": "−",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "4kQHx",
+                              "name": "tb2",
+                              "width": 32,
+                              "height": 32,
+                              "fill": "#F8FAFC",
+                              "cornerRadius": 6,
+                              "stroke": {
+                                "align": "outside",
+                                "thickness": 1,
+                                "fill": "#E2E8F0"
+                              },
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "RxRFP",
+                                  "name": "tb2i",
+                                  "fill": "#64748B",
+                                  "content": "+",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "xF0sP",
+                              "name": "tb3",
+                              "width": 32,
+                              "height": 32,
+                              "fill": "#F8FAFC",
+                              "cornerRadius": 6,
+                              "stroke": {
+                                "align": "outside",
+                                "thickness": 1,
+                                "fill": "#E2E8F0"
+                              },
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "8DHIV",
+                                  "name": "tb3i",
+                                  "fill": "#64748B",
+                                  "content": "↺",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "TIjO7",
+                      "name": "contentArea",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "y99Cu",
+                          "name": "rightContent",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "layout": "vertical",
+                          "padding": 40,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "rI7Z7",
+                              "name": "a4Paper",
+                              "clip": true,
+                              "width": 595,
+                              "height": 842,
+                              "fill": "#FFFFFF",
+                              "cornerRadius": 4,
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#0000001A",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 4
+                                },
+                                "blur": 24
+                              },
+                              "layout": "vertical",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "TcuRA",
+                                  "name": "resumeHeader",
+                                  "width": "fill_container",
+                                  "fill": "#1E293B",
+                                  "layout": "vertical",
+                                  "gap": 10,
+                                  "padding": [
+                                    28,
+                                    32
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "RYxVo",
+                                      "name": "resumeName",
+                                      "fill": "#FFFFFF",
+                                      "content": "张 三",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 28,
+                                      "fontWeight": "700"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "E3J8l",
+                                      "name": "resumeTitle",
+                                      "fill": "#94A3B8",
+                                      "content": "高级前端开发工程师",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "mnoag",
+                                      "name": "contactRow",
+                                      "width": "fill_container",
+                                      "gap": 20,
+                                      "alignItems": "center",
+                                      "children": [
+                                        {
+                                          "type": "frame",
+                                          "id": "Docrl",
+                                          "name": "contact1",
+                                          "gap": 6,
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "mifYV",
+                                              "name": "c1Icon",
+                                              "fill": "#94A3B8",
+                                              "content": "✉",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 11,
+                                              "fontWeight": "normal"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "id": "xAcoE",
+                                              "name": "c1Text",
+                                              "fill": "#CBD5E1",
+                                              "content": "zhangsan@email.com",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 11,
+                                              "fontWeight": "normal"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "iNxpd",
+                                          "name": "contact2",
+                                          "gap": 6,
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "nJKGW",
+                                              "name": "c2Icon",
+                                              "fill": "#94A3B8",
+                                              "content": "☎",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 11,
+                                              "fontWeight": "normal"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "id": "tdQto",
+                                              "name": "c2Text",
+                                              "fill": "#CBD5E1",
+                                              "content": "+86 138-0000-0000",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 11,
+                                              "fontWeight": "normal"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "xK5vL",
+                                          "name": "contact3",
+                                          "gap": 6,
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "bN8mQ",
+                                              "name": "c3Icon",
+                                              "fill": "#94A3B8",
+                                              "content": "🎂",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 11,
+                                              "fontWeight": "normal"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "id": "rS2tU",
+                                              "name": "c3Text",
+                                              "fill": "#CBD5E1",
+                                              "content": "28岁",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 11,
+                                              "fontWeight": "normal"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "wY4zA",
+                                          "name": "contact4",
+                                          "gap": 6,
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "cD6eG",
+                                              "name": "c4Icon",
+                                              "fill": "#94A3B8",
+                                              "content": "💼",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 11,
+                                              "fontWeight": "normal"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "id": "hJ8kL",
+                                              "name": "c4Text",
+                                              "fill": "#CBD5E1",
+                                              "content": "5年工作经验",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 11,
+                                              "fontWeight": "normal"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "wqrmm",
+                                  "name": "resumeBody",
+                                  "width": "fill_container",
+                                  "height": "fill_container",
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "OgMqo",
+                                      "name": "resumeSidebar",
+                                      "width": 170,
+                                      "height": "fill_container",
+                                      "fill": "#F8FAFC",
+                                      "layout": "vertical",
+                                      "gap": 12,
+                                      "padding": 20,
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "OXQTv",
+                                          "name": "sidebarTitle",
+                                          "fill": "#1E293B",
+                                          "content": "技能",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 12,
+                                          "fontWeight": "700"
+                                        },
+                                        {
+                                          "type": "rectangle",
+                                          "id": "9Tihh",
+                                          "name": "sidebarDivider",
+                                          "fill": "#3B82F6",
+                                          "width": "fill_container",
+                                          "height": 2
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "iIyy4",
+                                          "name": "skillList",
+                                          "width": "fill_container",
+                                          "layout": "vertical",
+                                          "gap": 6,
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "mD670",
+                                              "name": "s1",
+                                              "fill": "#475569",
+                                              "content": "JavaScript",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 11,
+                                              "fontWeight": "normal"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "id": "20NGj",
+                                              "name": "s2",
+                                              "fill": "#475569",
+                                              "content": "Vue.js",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 11,
+                                              "fontWeight": "normal"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "id": "3gYDz",
+                                              "name": "s3",
+                                              "fill": "#475569",
+                                              "content": "React",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 11,
+                                              "fontWeight": "normal"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "id": "87wju",
+                                              "name": "s4",
+                                              "fill": "#475569",
+                                              "content": "TypeScript",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 11,
+                                              "fontWeight": "normal"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "id": "YiD5f",
+                                              "name": "s5",
+                                              "fill": "#475569",
+                                              "content": "Node.js",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 11,
+                                              "fontWeight": "normal"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "id": "ikLlm",
+                                              "name": "s6",
+                                              "fill": "#475569",
+                                              "content": "CSS / Tailwind",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 11,
+                                              "fontWeight": "normal"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "iTvaA",
+                                          "name": "eduSpacer",
+                                          "width": "fill_container",
+                                          "height": 8
+                                        },
+                                        {
+                                          "type": "text",
+                                          "id": "bMbjH",
+                                          "name": "eduTitle",
+                                          "fill": "#1E293B",
+                                          "content": "教育",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 12,
+                                          "fontWeight": "700"
+                                        },
+                                        {
+                                          "type": "rectangle",
+                                          "id": "q3kVf",
+                                          "name": "eduDivider",
+                                          "fill": "#3B82F6",
+                                          "width": "fill_container",
+                                          "height": 2
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "gCnqz",
+                                          "name": "eduInfo",
+                                          "width": "fill_container",
+                                          "layout": "vertical",
+                                          "gap": 6,
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "yeUGC",
+                                              "name": "eduSchool",
+                                              "fill": "#1E293B",
+                                              "content": "北京大学",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 11,
+                                              "fontWeight": "600"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "id": "eesHs",
+                                              "name": "eduDegree",
+                                              "fill": "#64748B",
+                                              "content": "计算机科学与技术 · 本科",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 10,
+                                              "fontWeight": "normal"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "id": "2AC8E",
+                                              "name": "eduTime",
+                                              "fill": "#94A3B8",
+                                              "content": "2017.09 - 2021.06",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 10,
+                                              "fontWeight": "normal"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "zoH7Z",
+                                      "name": "resumeMain",
+                                      "width": "fill_container",
+                                      "height": "fill_container",
+                                      "layout": "vertical",
+                                      "gap": 14,
+                                      "padding": 20,
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "0fLJY",
+                                          "name": "mainTitle1",
+                                          "fill": "#1E293B",
+                                          "content": "个人简介",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 12,
+                                          "fontWeight": "700"
+                                        },
+                                        {
+                                          "type": "rectangle",
+                                          "id": "fAqos",
+                                          "name": "mainDivider1",
+                                          "fill": "#E2E8F0",
+                                          "width": "fill_container",
+                                          "height": 1
+                                        },
+                                        {
+                                          "type": "text",
+                                          "id": "SHqdW",
+                                          "name": "mainSummary",
+                                          "fill": "#475569",
+                                          "textGrowth": "fixed-width",
+                                          "width": "fill_container",
+                                          "content": "拥有5年以上前端开发经验，精通现代JavaScript框架，具备良好的架构设计能力和团队协作精神。专注于构建高性能、可扩展的Web应用。",
+                                          "lineHeight": 1.6,
+                                          "fontFamily": "Inter",
+                                          "fontSize": 10,
+                                          "fontWeight": "normal"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "id": "phO9G",
+                                          "name": "mainTitle2",
+                                          "fill": "#1E293B",
+                                          "content": "工作经历",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 12,
+                                          "fontWeight": "700"
+                                        },
+                                        {
+                                          "type": "rectangle",
+                                          "id": "DF89c",
+                                          "name": "mainDivider2",
+                                          "fill": "#E2E8F0",
+                                          "width": "fill_container",
+                                          "height": 1
+                                        },
+                                        {
+                                          "type": "frame",
+                                          "id": "uX8b7",
+                                          "name": "workExp",
+                                          "width": "fill_container",
+                                          "layout": "vertical",
+                                          "gap": 6,
+                                          "children": [
+                                            {
+                                              "type": "frame",
+                                              "id": "ZWf5e",
+                                              "name": "workHeader",
+                                              "width": "fill_container",
+                                              "justifyContent": "space_between",
+                                              "alignItems": "center",
+                                              "children": [
+                                                {
+                                                  "type": "text",
+                                                  "id": "1t7Wu",
+                                                  "name": "workCompany",
+                                                  "fill": "#1E293B",
+                                                  "content": "阿里巴巴集团",
+                                                  "fontFamily": "Inter",
+                                                  "fontSize": 11,
+                                                  "fontWeight": "600"
+                                                },
+                                                {
+                                                  "type": "text",
+                                                  "id": "U6EVg",
+                                                  "name": "workPeriod",
+                                                  "fill": "#94A3B8",
+                                                  "content": "2021.06 - 至今",
+                                                  "fontFamily": "Inter",
+                                                  "fontSize": 9,
+                                                  "fontWeight": "normal"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "text",
+                                              "id": "RLSaM",
+                                              "name": "workRole",
+                                              "fill": "#3B82F6",
+                                              "content": "高级前端工程师",
+                                              "fontFamily": "Inter",
+                                              "fontSize": 10,
+                                              "fontWeight": "normal"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "id": "2IrAt",
+                                              "name": "workDesc",
+                                              "fill": "#64748B",
+                                              "textGrowth": "fixed-width",
+                                              "width": "fill_container",
+                                              "content": "• 负责公司核心业务前端架构设计与技术选型\n• 主导微前端架构升级，提升团队开发效率40%\n• 优化首屏加载性能，LCP指标提升60%",
+                                              "lineHeight": 1.7,
+                                              "fontFamily": "Inter",
+                                              "fontSize": 9.5,
+                                              "fontWeight": "normal"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

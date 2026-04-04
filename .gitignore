@@ -1,0 +1,56 @@
+# 依赖目录
+node_modules/
+vendor/
+bower_components/
+
+# 构建输出
+dist/
+build/
+out/
+*.min.js
+*.min.css
+
+# 环境变量
+.env
+.env.local
+.env.*.local
+
+# IDE/编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Java
+*.class
+*.jar
+target/
+
+# 日志
+logs/
+*.log
+npm-debug.log*
+
+# 操作系统
+Thumbs.db
+Desktop.ini
+
+# 测试/覆盖
+coverage/
+.nyc_output/
+
+# 临时文件
+tmp/
+temp/
+*.tmp
+*.temp

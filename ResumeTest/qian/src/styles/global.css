@@ -1,0 +1,115 @@
+/* 全局样式 - 基于pencil-new.pen设计图 */
+
+:root {
+  /* 颜色变量 */
+  --primary-color: #3B82F6;
+  --primary-hover: #2563EB;
+  --text-dark: #1E293B;
+  --text-secondary: #94A3B8;
+  --text-gray: #888888;
+  --border-color: #E2E8F0;
+  --border-light: #E5E5E5;
+  --bg-main: #F8FAFC;
+  --bg-preview: #F1F5F9;
+  --bg-white: #FFFFFF;
+  --label-color: #374151;
+  --input-border: #D1D5DB;
+  --card-bg: #F8FAFC;
+
+  /* 尺寸变量 */
+  --navbar-height: 64px;
+  --left-panel-width: 610px;
+  --right-panel-width: 926px;
+  --a4-width: 595px;
+  --a4-height: 842px;
+  --card-radius: 12px;
+  --input-radius: 8px;
+  --button-radius: 8px;
+
+  /* 字体 */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: 14px;
+  color: var(--text-dark);
+  background-color: var(--bg-main);
+  line-height: 1.5;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* 输入框通用样式 */
+input, textarea {
+  font-family: var(--font-family);
+  font-size: 14px;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* 覆盖Ant Design默认样式 */
+.ant-input {
+  border-radius: var(--input-radius) !important;
+  border-color: var(--input-border) !important;
+}
+
+.ant-input:hover {
+  border-color: var(--primary-color) !important;
+}
+
+.ant-input:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1) !important;
+}
+
+.ant-btn-primary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  border-radius: var(--button-radius) !important;
+}
+
+.ant-btn-primary:hover {
+  background-color: var(--primary-hover) !important;
+  border-color: var(--primary-hover) !important;
+}
+
+.ant-tag {
+  border-radius: 4px !important;
+}
+
+/* 卡片阴影 */
+.card-shadow {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* A4预览阴影 */
+.a4-shadow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}

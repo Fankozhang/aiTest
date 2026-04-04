@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简历编辑器</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#007fff',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        
+        .gradient-blue-purple {
+            background: linear-gradient(180deg, #3B82F6 0%, #6366F1 100%);
+        }
+        
+        .gradient-blue-violet {
+            background: linear-gradient(90deg, #3B82F6 0%, #8B5CF6 100%);
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #F8FAFC;
+        }
+        
+        .editor-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .editor-panel {
+            width: 480px;
+            background: #FFFFFF;
+            border-right: 1px solid #E2E8F0;
+            overflow-y: auto;
+        }
+        
+        .preview-panel {
+            flex: 1;
+            background: #F1F5F9;
+            padding: 32px;
+            overflow-y: auto;
+        }
+        
+        .input-field {
+            height: 40px;
+            border-radius: 6px;
+            border: 1px solid #E2E8F0 !important;
+            padding: 0 12px;
+            font-size: 14px;
+            width: 100%;
+            transition: all 0.2s;
+            background-color: #FFFFFF !important;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #3B82F6 !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .input-field::placeholder {
+            color: #94A3B8;
+        }
+        
+        /* 移除所有输入框的默认样式 */
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            border: 1px solid #E2E8F0 !important;
+            background-color: #FFFFFF !important;
+        }
+        
+        .input-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #334155;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1E293B;
+            margin-bottom: 16px;
+        }
+        
+        .resume-card {
+            width: 884px;
+            max-width: 884px;
+            background: #FFFFFF;
+            border-radius: 16px;
+            border: 1px solid #E2E8F0;
+            margin: 0 auto;
+        }
+        
+        /* PDF导出专用样式 */
+        #pdf-export-container .resume-card {
+            width: 100% !important;
+            max-width: 700px !important;
+            margin: 0 !important;
+            border: none !important;
+            border-radius: 0 !important;
+        }
+        
+        .skill-tag {
+            padding: 10px 20px;
+            border-radius: 4px;
+            border: 1.5px solid #3B82F6;
+            color: #3B82F6;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            
+            .print-area {
+                margin: 0;
+                box-shadow: none;
+                border: none;
+            }
+            
+            /* 打印时优化简历卡片 */
+            .resume-card {
+                width: 100% !important;
+                max-width: 190mm !important; /* A4纸张减去左右边距 */
+                margin: 0 !important;
+                border: none !important;
+                border-radius: 0 !important;
+                page-break-inside: avoid;
+            }
+            
+            /* 确保所有内容在打印时可见 */
+            body, html {
+                background: #FFFFFF !important;
+                color: #000000 !important;
+            }
+            
+            /* 防止内容被截断 */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+        
+        /* PDF导出专用样式 */
+        #pdf-export-container .resume-card {
+            width: 100% !important;
+            max-width: 700px !important;
+            margin: 0 !important;
+            border: none !important;
+            border-radius: 0 !important;
+        }
+        
+        #pdf-export-container {
+            font-size: 14px !important;
+        }
+        
+        #pdf-export-container * {
+            box-sizing: border-box !important;
+        }
+        
+        /* 确保PDF导出时字体渲染一致 */
+        @media screen {
+            body {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+        
+        /* PDF临时容器样式 */
+        #pdf-temp-container {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+            font-size: 14px !important;
+            line-height: 1.5 !important;
+            color: #334155 !important;
+        }
+        
+        #pdf-temp-container * {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+            box-sizing: border-box !important;
+        }
+        
+        /* 确保所有元素在PDF导出时保持原有样式 */
+        #pdf-temp-container .resume-card {
+            width: 100% !important;
+            max-width: 660px !important;
+            margin: 0 !important;
+            border: none !important;
+            border-radius: 0 !important;
+            background: #FFFFFF !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="editor-container">
+        <!-- 左侧编辑面板 -->
+        <aside class="editor-panel no-print">
+            <!-- Header -->
+            <div style="padding: 24px; border-bottom: 1px solid #E2E8F0;">
+                <h1 style="font-size: 20px; font-weight: 600; color: #1E293B; margin: 0 0 8px 0;">编辑简历</h1>
+                <p style="font-size: 14px; color: #64748B; margin: 0;">填写以下信息，右侧实时预览简历效果</p>
+            </div>
+            
+            <!-- Form Container -->
+            <div style="padding: 24px; display: flex; flex-direction: column; gap: 24px;">
+                <!-- 基本信息 -->
+                <section style="display: flex; flex-direction: column; gap: 16px;">
+                    <h2 class="section-title">基本信息</h2>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <label class="input-label">姓名</label>
+                        <input type="text" class="input-field" placeholder="请输入姓名" id="nameInput">
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <label class="input-label">职位</label>
+                        <input type="text" class="input-field" placeholder="请输入职位" id="titleInput">
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <label class="input-label">邮箱</label>
+                        <input type="email" class="input-field" placeholder="example@email.com" id="emailInput">
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <label class="input-label">电话</label>
+                        <input type="tel" class="input-field" placeholder="请输入联系电话" id="phoneInput">
+                    </div>
+                </section>
+                
+                <!-- 个人简介 -->
+                <section style="display: flex; flex-direction: column; gap: 16px;">
+                    <h2 class="section-title">个人简介</h2>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <label class="input-label">工作简介</label>
+                        <textarea class="input-field" style="height: 120px; padding: 12px; resize: none;" 
+                                  placeholder="简述你的工作经验、专业能力和职业目标..." id="summaryInput"></textarea>
+                    </div>
+                </section>
+                
+                <!-- 工作经验 -->
+                <section style="display: flex; flex-direction: column; gap: 16px;">
+                    <h2 class="section-title">工作经验</h2>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <label class="input-label">公司名称</label>
+                        <input type="text" class="input-field" placeholder="请输入公司名称" id="companyInput">
+                    </div>
+                    
+                    <div style="display: flex; gap: 12px;">
+                        <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                            <label class="input-label">职位</label>
+                            <input type="text" class="input-field" placeholder="请输入职位" id="roleInput">
+                        </div>
+                        
+                        <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                            <label class="input-label">时间</label>
+                            <input type="text" class="input-field" placeholder="2020-2024" id="periodInput">
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 专业技能 -->
+                <section style="display: flex; flex-direction: column; gap: 16px;">
+                    <h2 class="section-title">专业技能</h2>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <label class="input-label">技能标签（用逗号分隔）</label>
+                        <input type="text" class="input-field" 
+                               placeholder="JavaScript, React, Node.js, Python..." id="skillsInput">
+                    </div>
+                </section>
+                
+                <!-- 学习履历 -->
+                <section style="display: flex; flex-direction: column; gap: 16px;">
+                    <h2 class="section-title">学习履历</h2>
+                    
+                    <div style="display: flex; gap: 12px;">
+                        <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                            <label class="input-label">学校名称</label>
+                            <input type="text" class="input-field" placeholder="请输入学校名称" id="schoolInput">
+                        </div>
+                        
+                        <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                            <label class="input-label">学历</label>
+                            <input type="text" class="input-field" placeholder="请输入学历" id="degreeInput">
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 12px;">
+                        <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                            <label class="input-label">所学专业</label>
+                            <input type="text" class="input-field" placeholder="请输入专业" id="majorInput">
+                        </div>
+                        
+                        <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                            <label class="input-label">在校时间</label>
+                            <input type="text" class="input-field" placeholder="例如：2016.09 - 2020.06" id="timeInput">
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </aside>
+        
+        <!-- 右侧预览面板 -->
+        <main class="preview-panel">
+            <div style="margin-bottom: 32px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h2 style="font-size: 20px; font-weight: 600; color: #1E293B; margin: 0;">简历预览</h2>
+                    <button onclick="downloadResume()" 
+                            style="background: #3B82F6; color: #FFFFFF; border: 1px solid #3B82F6; 
+                                   padding: 8px 16px; border-radius: 6px; font-size: 14px; 
+                                   font-weight: 500; cursor: pointer; display: flex; 
+                                   align-items: center; gap: 8px; transition: all 0.2s;"
+                            onmouseover="this.style.background='#2563EB'" 
+                            onmouseout="this.style.background='#3B82F6'">
+                        <span class="material-symbols-outlined" style="font-size: 16px;">download</span>
+                        下载简历
+                    </button>
+                </div>
+                <p style="font-size: 14px; color: #64748B; margin: 0 0 12px 0;">实时展示您的简历效果</p>
+                <div style="width: 120px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, #3B82F6 0%, #8B5CF6 100%);"></div>
+            </div>
+            
+            <!-- 简历卡片 -->
+            <div class="resume-card">
+                <div style="border-radius: 16px; overflow: hidden;">
+                    <!-- 渐变顶部 -->
+                    <div class="gradient-blue-purple" style="height: 80px; border-radius: 16px 16px 0 0;"></div>
+                    
+                    <!-- 简历内容 -->
+                    <div style="background: #FFFFFF; padding: 24px 50px 50px 50px;">
+                        <!-- 个人信息 -->
+                        <section style="padding: 0 0 60px 0; text-align: center; display: flex; flex-direction: column; gap: 12px; align-items: center;">
+                            <h1 style="font-size: 32px; font-weight: 700; color: #1E293B; margin: 0;" id="previewName">张三</h1>
+                            
+                            <div style="background: #EFF6FF; padding: 8px 20px; border-radius: 4px; display: inline-block;">
+                                <span style="font-size: 15px; font-weight: 600; color: #3B82F6;" id="previewTitle">前端开发工程师</span>
+                            </div>
+                            
+                            <div style="width: 100%; height: 1px; background: #E2E8F0;"></div>
+                            
+                            <div style="display: flex; gap: 32px; justify-content: center;">
+                                <div style="display: flex; gap: 8px; align-items: center;">
+                                    <div style="width: 36px; height: 36px; background: #EFF6FF; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                                        <span class="material-symbols-outlined" style="font-size: 18px; color: #3B82F6;">mail</span>
+                                    </div>
+                                    <span style="font-size: 14px; font-weight: 500; color: #64748B;" id="previewEmail">zhangsan@example.com</span>
+                                </div>
+                                
+                                <div style="display: flex; gap: 8px; align-items: center;">
+                                    <div style="width: 36px; height: 36px; background: #EFF6FF; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                                        <span class="material-symbols-outlined" style="font-size: 18px; color: #3B82F6;">phone</span>
+                                    </div>
+                                    <span style="font-size: 14px; font-weight: 500; color: #64748B;" id="previewPhone">138-0013-8000</span>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <!-- 个人简介 -->
+                        <section style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px;">
+                            <div style="display: flex; gap: 12px; align-items: center;">
+                                <div class="gradient-blue-violet" style="width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                                    <span class="material-symbols-outlined" style="font-size: 16px; color: #FFFFFF;">person</span>
+                                </div>
+                                <h3 style="font-size: 18px; font-weight: 700; color: #1E293B; margin: 0;">个人简介</h3>
+                            </div>
+                            
+                            <div style="background: #F8FAFC; padding: 16px; border-radius: 8px;">
+                                <p style="font-size: 15px; color: #334155; line-height: 1.8; margin: 0;" id="previewSummary">
+                                    资深前端开发工程师，5 年以上开发经验，擅长现代化 Web 应用开发。熟练掌握 React、Vue 等主流框架。
+                                </p>
+                            </div>
+                        </section>
+                        
+                        <!-- 工作经验 -->
+                        <section style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px;">
+                            <div style="display: flex; gap: 12px; align-items: center;">
+                                <div class="gradient-blue-violet" style="width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                                    <span class="material-symbols-outlined" style="font-size: 16px; color: #FFFFFF;">work</span>
+                                </div>
+                                <h3 style="font-size: 18px; font-weight: 700; color: #1E293B; margin: 0;">工作经验</h3>
+                            </div>
+                            
+                            <div style="border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                                            <h4 style="font-size: 16px; font-weight: 700; color: #1E293B; margin: 0;" id="previewCompany">阿里巴巴集团</h4>
+                                        </div>
+                                        
+                                        <div style="display: flex; align-items: center; gap: 8px;">
+                                            <span style="font-size: 14px; font-weight: 600; color: #3B82F6;" id="previewRole">高级前端开发工程师</span>
+                                            <div style="background: #DBEAFE; padding: 4px 12px; border-radius: 4px; display: inline-flex; align-items: center;">
+                                                <span style="font-size: 12px; font-weight: 600; color: #3B82F6;" id="previewPeriod">2021-2024</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                <p style="font-size: 14px; color: #64748B; line-height: 1.7; margin: 0;" id="previewWorkDesc">
+                                    负责核心业务模块的开发和维护，参与架构设计，带领团队完成多个重大项目的交付。
+                                </p>
+                            </div>
+                        </section>
+                        
+                        <!-- 专业技能 -->
+                        <section style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px;">
+                            <div style="display: flex; gap: 12px; align-items: center;">
+                                <div class="gradient-blue-violet" style="width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                                    <span class="material-symbols-outlined" style="font-size: 16px; color: #FFFFFF;">bolt</span>
+                                </div>
+                                <h3 style="font-size: 18px; font-weight: 700; color: #1E293B; margin: 0;">专业技能</h3>
+                            </div>
+                            
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap;" id="previewSkills">
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">Node.js</span>
+                                <span class="skill-tag">Python</span>
+                            </div>
+                        </section>
+                        
+                        <!-- 学习经历 -->
+                        <section style="display: flex; flex-direction: column; gap: 16px;">
+                            <div style="display: flex; gap: 12px; align-items: center;">
+                                <div class="gradient-blue-violet" style="width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                                    <span class="material-symbols-outlined" style="font-size: 16px; color: #FFFFFF;">school</span>
+                                </div>
+                                <h3 style="font-size: 18px; font-weight: 700; color: #1E293B; margin: 0;">学习经历</h3>
+                            </div>
+                            
+                            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <div style="display: flex; flex-direction: column; gap: 4px;">
+                                        <h4 style="font-size: 16px; font-weight: 600; color: #1E293B; margin: 0;" id="previewSchool">北京航空航天大学</h4>
+                                    </div>
+                                    
+                                    <div style="display: flex; flex-direction: column; gap: 4px; align-items: flex-end;">
+                                        <span style="font-size: 13px; font-weight: 500; color: #64748B;" id="previewTime">2016.09 - 2020.06</span>
+                                    </div>
+                                </div>
+                                
+                                <p style="font-size: 14px; font-weight: 500; color: #3B82F6; margin: 0;" id="previewEduDetail">本科 · 计算机科学与技术</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        // 实时更新预览功能
+        const inputs = {
+            name: document.getElementById('nameInput'),
+            title: document.getElementById('titleInput'),
+            email: document.getElementById('emailInput'),
+            phone: document.getElementById('phoneInput'),
+            summary: document.getElementById('summaryInput'),
+            company: document.getElementById('companyInput'),
+            role: document.getElementById('roleInput'),
+            period: document.getElementById('periodInput'),
+            skills: document.getElementById('skillsInput'),
+            school: document.getElementById('schoolInput'),
+            degree: document.getElementById('degreeInput'),
+            major: document.getElementById('majorInput'),
+            time: document.getElementById('timeInput')
+        };
+        
+        const previews = {
+            name: document.getElementById('previewName'),
+            title: document.getElementById('previewTitle'),
+            email: document.getElementById('previewEmail'),
+            phone: document.getElementById('previewPhone'),
+            summary: document.getElementById('previewSummary'),
+            company: document.getElementById('previewCompany'),
+            role: document.getElementById('previewRole'),
+            period: document.getElementById('previewPeriod'),
+            workDesc: document.getElementById('previewWorkDesc'),
+            skills: document.getElementById('previewSkills'),
+            school: document.getElementById('previewSchool'),
+            time: document.getElementById('previewTime'),
+            eduDetail: document.getElementById('previewEduDetail')
+        };
+        
+        // 监听输入变化
+        inputs.name?.addEventListener('input', (e) => {
+            previews.name.textContent = e.target.value || '张三';
+        });
+        
+        inputs.title?.addEventListener('input', (e) => {
+            previews.title.textContent = e.target.value || '前端开发工程师';
+        });
+        
+        inputs.email?.addEventListener('input', (e) => {
+            previews.email.textContent = e.target.value || 'zhangsan@example.com';
+        });
+        
+        inputs.phone?.addEventListener('input', (e) => {
+            previews.phone.textContent = e.target.value || '138-0013-8000';
+        });
+        
+        inputs.summary?.addEventListener('input', (e) => {
+            previews.summary.textContent = e.target.value || '资深前端开发工程师，5 年以上开发经验，擅长现代化 Web 应用开发。熟练掌握 React、Vue 等主流框架。';
+        });
+        
+        inputs.company?.addEventListener('input', (e) => {
+            previews.company.textContent = e.target.value || '阿里巴巴集团';
+        });
+        
+        inputs.role?.addEventListener('input', (e) => {
+            previews.role.textContent = e.target.value || '高级前端开发工程师';
+        });
+        
+        inputs.period?.addEventListener('input', (e) => {
+            previews.period.textContent = e.target.value || '2021-2024';
+        });
+        
+        inputs.skills?.addEventListener('input', (e) => {
+            const skills = e.target.value.split(',').map(s => s.trim()).filter(s => s);
+            if (skills.length > 0) {
+                previews.skills.innerHTML = skills.map(skill => 
+                    `<span class="skill-tag">${skill}</span>`
+                ).join('');
+            } else {
+                previews.skills.innerHTML = '<span class="skill-tag">JavaScript</span><span class="skill-tag">React</span><span class="skill-tag">Node.js</span><span class="skill-tag">Python</span>';
+            }
+        });
+        
+        inputs.school?.addEventListener('input', (e) => {
+            previews.school.textContent = e.target.value || '北京航空航天大学';
+        });
+        
+        inputs.time?.addEventListener('input', (e) => {
+            previews.time.textContent = e.target.value || '2016.09 - 2020.06';
+        });
+        
+        // 更新教育详情
+        function updateEduDetail() {
+            const degree = inputs.degree?.value || '';
+            const major = inputs.major?.value || '';
+            if (degree || major) {
+                previews.eduDetail.textContent = `${degree}${degree && major ? ' · ' : ''}${major}` || '本科 · 计算机科学与技术';
+            }
+        }
+        
+        inputs.degree?.addEventListener('input', updateEduDetail);
+        inputs.major?.addEventListener('input', updateEduDetail);
+        
+        // 预加载字体以确保PDF导出时字体一致
+        async function preloadFonts() {
+            try {
+                await document.fonts.ready;
+            } catch (e) {
+                console.warn('Font loading failed:', e);
+            }
+        }
+        
+        // 下载简历功能 - 使用 html2pdf.js 生成 PDF
+        async function downloadResume() {
+            const resumeElement = document.querySelector('.resume-card');
+            
+            if (!resumeElement) {
+                alert('未找到简历内容');
+                return;
+            }
+            
+            // 确保字体已加载完成
+            await preloadFonts();
+            
+            // 获取姓名作为文件名
+            const name = document.getElementById('previewName')?.textContent || '张三';
+            const filename = `${name}_简历.pdf`;
+            
+            // 创建一个隐藏的临时容器用于PDF导出（避免页面抖动）
+            const tempContainer = document.createElement('div');
+            tempContainer.id = 'pdf-temp-container';
+            tempContainer.style.position = 'fixed';
+            tempContainer.style.top = '-9999px';
+            tempContainer.style.left = '-9999px';
+            tempContainer.style.width = '700px';
+            tempContainer.style.background = '#FFFFFF';
+            tempContainer.style.padding = '20px';
+            tempContainer.style.visibility = 'hidden';
+            tempContainer.style.pointerEvents = 'none';
+            
+            // 克隆简历元素并确保样式继承
+            const clonedResume = resumeElement.cloneNode(true);
+            clonedResume.style.width = '100%';
+            clonedResume.style.maxWidth = '660px'; // 700px - 40px padding
+            
+            // 确保所有内联样式都被正确复制
+            const originalStyles = window.getComputedStyle(resumeElement);
+            for (let prop of originalStyles) {
+                if (prop.startsWith('font') || prop.startsWith('color') || prop.startsWith('background')) {
+                    clonedResume.style[prop] = originalStyles.getPropertyValue(prop);
+                }
+            }
+            
+            tempContainer.appendChild(clonedResume);
+            document.body.appendChild(tempContainer);
+            
+            // 优化的html2pdf配置以匹配网页显示效果
+            const opt = {
+                margin: 10, // 简化margin设置
+                filename: filename,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { 
+                    scale: 2,
+                    useCORS: true,
+                    letterRendering: true,
+                    allowTaint: true,
+                    backgroundColor: '#FFFFFF',
+                    scrollX: 0,
+                    scrollY: -window.scrollY
+                },
+                jsPDF: { 
+                    unit: 'mm', 
+                    format: 'a4', 
+                    orientation: 'portrait'
+                }
+            };
+            
+            try {
+                // 使用同步方式生成PDF
+                await html2pdf().set(opt).from(tempContainer).save();
+            } finally {
+                // 清理临时元素
+                if (tempContainer.parentNode) {
+                    tempContainer.parentNode.removeChild(tempContainer);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
