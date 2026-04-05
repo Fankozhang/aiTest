@@ -2176,7 +2176,7 @@
                               "fill": {
                                 "type": "image",
                                 "enabled": true,
-                                "url": "https://images.unsplash.com/photo-1617136737635-162e779723f3?w=300&h=400&fit=crop",
+                                "url": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300&h=400&fit=crop",
                                 "mode": "fit"
                               },
                               "cornerRadius": 10,
