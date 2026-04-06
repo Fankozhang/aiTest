@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python \"C:\\\\Users\\\\张帆\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"admin dashboard SaaS blue professional enterprise\" --design-system -p \"Admin Panel\")",
+      "mcp__playwright__browser_snapshot",
+      "Read(//c/Users/张帆/.claude/**)",
+      "Read(//c/Users/张帆/AppData/Roaming/Claude/**)"
+    ]
+  }
+}
