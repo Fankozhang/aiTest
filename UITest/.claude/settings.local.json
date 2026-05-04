@@ -4,7 +4,12 @@
       "Bash(python \"C:\\\\Users\\\\张帆\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"admin dashboard SaaS blue professional enterprise\" --design-system -p \"Admin Panel\")",
       "mcp__playwright__browser_snapshot",
       "Read(//c/Users/张帆/.claude/**)",
-      "Read(//c/Users/张帆/AppData/Roaming/Claude/**)"
+      "Read(//c/Users/张帆/AppData/Roaming/Claude/**)",
+      "Bash(mkdir -p /e/aiTest/UITest/dashSoft)",
+      "Bash(openspec init:*)",
+      "Bash(wmic process:*)",
+      "Bash(node E:/aiTest/UITest/dashSoft/aiDocs/testFiles/e2e/deep_functional_test.js)",
+      "Bash(dist-electron/win-unpacked/ScreenRec.exe)"
     ]
   }
 }

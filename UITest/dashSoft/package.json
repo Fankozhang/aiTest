@@ -1,0 +1,46 @@
+{
+  "name": "screenrec",
+  "version": "2.1.0",
+  "description": "屏幕录制与截图工具",
+  "author": "ScreenRec",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
+    "build": "vite build && electron-builder",
+    "electron": "electron .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "pinia": "^2.1.0",
+    "vue": "^3.4.0",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "concurrently": "^8.2.0",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.0",
+    "playwright": "^1.59.1",
+    "vite": "^5.0.0",
+    "vite-plugin-electron": "^0.28.0",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.screenrec.app",
+    "productName": "ScreenRec",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "win": {
+      "target": "dir"
+    },
+    "mac": {
+      "target": "dmg"
+    }
+  }
+}
