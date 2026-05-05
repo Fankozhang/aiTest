@@ -695,7 +695,7 @@ let statusText = '';
         durationText = `${status.duration}ms`;
       }
       if (status.error) {
-        errorText = status.error;
+        errorText = sanitizeDisplayText(status.error);
       }
     } else {
       statusClass = status || '';
@@ -1188,8 +1188,8 @@ function renderLogs(entries) {
         msg = JSON.stringify(entry.error);
       }
       msg = msg || 'Unknown error';
-      errorText = msg;
-      errorDetails = msg;
+      errorText = sanitizeDisplayText(msg);
+      errorDetails = errorText;
       
       if (entry.error.type) {
         errorDetails += `\n类型: ${entry.error.type}`;
@@ -1375,6 +1375,28 @@ function escapeHtml(text) {
   const div = document.createElement('div');
   div.textContent = text;
   return div.innerHTML;
+}
+
+// 检测是否为 HTML 内容
+function isHtmlContent(text) {
+  if (!text || typeof text !== 'string') return false;
+  const trimmed = text.trim().toLowerCase();
+  return trimmed.startsWith('<!doctype html') || 
+         trimmed.startsWith('<html') || 
+         (trimmed.includes('<body') && trimmed.includes('</body>'));
+}
+
+// 清洗显示文本
+function sanitizeDisplayText(text) {
+  if (!text) return '';
+  if (isHtmlContent(text)) {
+    return '[HTML 错误页面 - 可能是上游服务 502/503 错误]';
+  }
+  // 如果文本过长且没有空格（可能是 base64 或其他数据），进行截断
+  if (text.length > 1000) {
+    return text.substring(0, 500) + '... [内容过长已截断]';
+  }
+  return text;
 }
 
 function copyToClipboard(elementId) {

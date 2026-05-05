@@ -108,7 +108,7 @@ class ApiKeyManager {
   }
 
   /**
-   * 获取指定模型的可用 API Key（最小并发优先）
+   * 获取指定模型的可用 API Key（最小并发优先 + 轮询）
    */
   getKeyForModel(model) {
     const keyIds = this.modelToKeys.get(model);
@@ -119,22 +119,30 @@ class ApiKeyManager {
     const now = Date.now();
     let selectedKey = null;
     let minConnections = Infinity;
+    let selectedIndex = -1;
 
-    // 遍历所有支持该模型的 Key，寻找负载最低的
-    for (const id of keyIds) {
+    // 获取该模型的轮询起始索引，实现 Round Robin 分布
+    const lastIndex = this.modelRoundRobin.get(model) ?? -1;
+    const startIndex = (lastIndex + 1) % keyIds.length;
+
+    // 从上次使用的下一个位置开始循环遍历所有支持该模型的 Key
+    for (let i = 0; i < keyIds.length; i++) {
+      const currentIndex = (startIndex + i) % keyIds.length;
+      const id = keyIds[currentIndex];
       const apiKey = this.apiKeys.get(id);
+      
       if (!apiKey || !apiKey.enabled || apiKey.status === 'disabled') continue;
 
       // 1. 检查熔断器
       if (apiKey.circuitBreaker.isOpen) {
         if (apiKey.circuitBreaker.resetTime && now > apiKey.circuitBreaker.resetTime) {
-          // 冷却期满，尝试复活
-          apiKey.circuitBreaker.isOpen = false;
-          apiKey.circuitBreaker.failures = 0;
-          apiKey.circuitBreaker.resetTime = null;
-          apiKey.status = 'active';
-        } else {
-          continue; 
+          // 冷却期满，进入半开状态尝试探测
+          apiKey.status = 'half_open';
+        } 
+        
+        // 如果不是半开状态，或者半开状态已经有请求在探测了，则跳过
+        if (apiKey.status !== 'half_open' || apiKey.concurrentRequests > 0) {
+          continue;
         }
       }
 
@@ -148,19 +156,20 @@ class ApiKeyManager {
         continue;
       }
 
-      // 4. 最小并发优先策略
+      // 4. 最小并发优先策略 + 顺序轮询
+      // 如果发现更低并发的 Key，更新选择
       if (apiKey.concurrentRequests < minConnections) {
         minConnections = apiKey.concurrentRequests;
         selectedKey = apiKey;
-      } else if (apiKey.concurrentRequests === minConnections) {
-        // 如果并发数相同，则选择上次使用时间更早的，实现更均匀的分布
-        if (!selectedKey || (apiKey.stats.lastUsed < selectedKey.stats.lastUsed)) {
-          selectedKey = apiKey;
-        }
-      }
+        selectedIndex = currentIndex;
+      } 
+      // 如果并发相同，我们保持 startIndex 遇到的第一个（即轮询顺序中的下一个），无需更新
     }
 
     if (selectedKey) {
+      // 记录本次使用的索引，供下次轮询参考
+      this.modelRoundRobin.set(model, selectedIndex);
+      
       selectedKey.concurrentRequests++;
       selectedKey.stats.totalRequests++;
       selectedKey.stats.lastUsed = new Date().toISOString();
@@ -192,7 +201,12 @@ class ApiKeyManager {
 
     // 成功后将状态恢复为 active
     if (apiKey.status !== 'active') {
+      if (apiKey.status === 'half_open') {
+        console.log(`[KeyManager] ${apiKey.name} 探测成功，熔断器关闭，恢复正常使用`);
+      }
       apiKey.status = 'active';
+      apiKey.circuitBreaker.isOpen = false;
+      apiKey.circuitBreaker.resetTime = null;
     }
 
     // 更新限流状态（从响应头）
@@ -253,6 +267,15 @@ class ApiKeyManager {
     } 
     // 4. 处理其他服务器错误 (5xx) - 触发熔断
     else {
+      // 如果是在半开状态下失败，立即再次熔断
+      if (apiKey.status === 'half_open') {
+        apiKey.circuitBreaker.isOpen = true;
+        apiKey.circuitBreaker.resetTime = Date.now() + (apiKey.circuitBreaker.resetSeconds * 1000);
+        apiKey.status = 'error';
+        console.error(`[KeyManager] ${apiKey.name} 半开探测失败，重新进入熔断状态`);
+        return;
+      }
+
       apiKey.circuitBreaker.failures++;
       console.warn(`[KeyManager] ${apiKey.name} 连续失败计次: ${apiKey.circuitBreaker.failures}/${apiKey.circuitBreaker.threshold}`);
       
@@ -303,7 +326,7 @@ class ApiKeyManager {
       const keyIds = this.modelToKeys.get(keyId);
       for (const id of keyIds) {
         const apiKey = this.apiKeys.get(id);
-        if (apiKey && apiKey.enabled && apiKey.status === 'active') {
+        if (apiKey && apiKey.enabled && (apiKey.status === 'active' || apiKey.status === 'half_open')) {
           models.add(keyId);
           break;
         }

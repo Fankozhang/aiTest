@@ -77,6 +77,60 @@ function startServer(serverConfig, updateStatsFn) {
     });
   });
 
+  // 获取完整模型目录 - 包含 tier 元数据
+  app.get('/v1/models/full', (req, res) => {
+    const models = apiKeyManager.getSupportedModels();
+    const keyStatuses = apiKeyManager.getAllKeyStatus();
+    
+    // 为每个模型构建完整的元数据
+    const modelData = models.map(model => {
+      // 查找支持该模型的 Key
+      const supportingKeys = keyStatuses.filter(k => 
+        k.models.includes(model) && k.enabled && k.status === 'active'
+      );
+      
+      // 根据 Key 的 baseUrl 确定 tier（简单按域名分组）
+      const tiers = new Set();
+      supportingKeys.forEach(key => {
+        const baseUrl = key.baseUrl || '';
+        if (baseUrl.includes('openai')) tiers.add('openai');
+        else if (baseUrl.includes('anthropic')) tiers.add('anthropic');
+        else if (baseUrl.includes('google')) tiers.add('google');
+        else if (baseUrl.includes('deepseek')) tiers.add('deepseek');
+        else if (baseUrl.includes('xai')) tiers.add('xai');
+        else if (baseUrl.includes('cohere')) tiers.add('cohere');
+        else if (baseUrl.includes('meta-llama') || baseUrl.includes('meta-llama')) tiers.add('meta');
+        else if (baseUrl.includes('glm')) tiers.add('glm');
+        else if (baseUrl.includes('qwen')) tiers.add('qwen');
+        else if (baseUrl.includes('vhr')) tiers.add('image');
+        else if (baseUrl.includes('img')) tiers.add('image');
+        else tiers.add('other');
+      });
+      
+      return {
+        id: model,
+        object: 'model',
+        created: Date.now(),
+        owned_by: 'proxy',
+        // 扩展字段
+        tier: Array.from(tiers).join(','),
+        provider: supportingKeys.length > 0 ? 
+          new URL(supportingKeys[0].baseUrl || 'http://localhost').hostname.replace('api.', '') : 'unknown',
+        available: supportingKeys.length > 0,
+        keys_count: supportingKeys.length
+      };
+    });
+    
+    res.json({
+      object: 'list',
+      data: modelData,
+      metadata: {
+        total: modelData.length,
+        timestamp: new Date().toISOString()
+      }
+    });
+  });
+
   // ===== 独立接口路由 =====
   
   // ChatGPT 对话接口
@@ -310,42 +364,136 @@ function extractRateLimitHeaders(headers) {
 }
 
 /**
- * 提取错误类型
+ * 检测是否为 HTML 错误页面（非 JSON 响应）
+ */
+function isHtmlErrorResponse(content) {
+  if (!content) return false;
+  const trimmed = content.trim().toLowerCase();
+  // 检测 HTML 特征标签
+  return trimmed.startsWith('<!doctype html') || 
+         trimmed.startsWith('<html') || 
+         trimmed.includes('502') && trimmed.includes('bad gateway') ||
+         trimmed.includes('cloudflare') && trimmed.includes('error');
+}
+
+/**
+ * 清理错误字符串，移除 HTML 内容
+ */
+function sanitizeErrorForLog(errorStr) {
+  if (!errorStr) return null;
+  if (isHtmlErrorResponse(errorStr)) {
+    return '[HTML Error Page - 可能是上游服务 502/503 错误]';
+  }
+  // 限制最大长度
+  if (errorStr.length > 500) {
+    return errorStr.substring(0, 500) + '...';
+  }
+  return errorStr;
+}
+
+/**
+ * 提取错误类型 - 符合 FreeTheAi 文档标准
+ * 支持: 400, 401, 403, 429, 5xx 错误码识别
  */
 function extractErrorType(errorStr) {
   if (!errorStr) return 'unknown';
+  
+  // 检测 HTML 错误页面，返回 server_error
+  if (isHtmlErrorResponse(errorStr)) {
+    return 'server_error';
+  }
+  
   try {
     const parsed = JSON.parse(errorStr);
     if (parsed.error?.type) return parsed.error.type;
     if (parsed.error?.code) return parsed.error.code;
   } catch (e) {
     const lower = errorStr.toLowerCase();
-    if (lower.includes('rate limit') || lower.includes('too many requests')) return 'rate_limit';
-    if (lower.includes('invalid api key') || lower.includes('authentication')) return 'authentication_error';
-    if (lower.includes('context length') || lower.includes('maximum context')) return 'context_length_exceeded';
+    // 429 - Rate limit
+    if (lower.includes('rate limit') || lower.includes('too many requests') || lower.includes('rate_limit')) return 'rate_limit_error';
+    // 401 - Invalid API key
+    if (lower.includes('invalid api key') || lower.includes('authentication') || lower.includes('unauthorized')) return 'invalid_request_error';
+    // 403 - Access denied
+    if (lower.includes('access denied') || lower.includes('forbidden') || lower.includes('permission')) return 'authentication_error';
+    // 400 - Invalid request
+    if (lower.includes('invalid request') || lower.includes('validation') || lower.includes('missing')) return 'invalid_request_error';
+    if (lower.includes('unknown model') || lower.includes('model not found')) return 'invalid_request_error';
+    // 5xx - Server error
+    if (lower.includes('server error') || lower.includes('internal error') || lower.includes('upstream')) return 'server_error';
   }
   return 'unknown';
 }
 
 /**
- * 转换为标准错误格式
+ * 转换为标准错误格式 - 符合 FreeTheAi 文档标准
+ * 400: Invalid request body, missing prompt, unknown model, or unsupported media operation.
+ * 401: Missing or invalid API key.
+ * 403: The model is not available for your current access tier.
+ * 429: Rate limit or concurrency limit reached.
+ * 5xx: Provider or gateway failure.
  */
 function convertToStandardError(status, errorStr, isRateLimited) {
+  // 检测 HTML 错误响应，返回标准化错误
+  if (isHtmlErrorResponse(errorStr)) {
+    return {
+      error: {
+        message: 'Provider or gateway failure. Retry once before reporting.',
+        type: 'server_error',
+        code: status >= 500 ? status : 502
+      }
+    };
+  }
+
   let message = errorStr;
-  let type = isRateLimited ? 'rate_limit' : 'proxy_error';
+  let type = isRateLimited ? 'rate_limit_error' : 'proxy_error';
   let code = status;
 
   try {
     const parsed = JSON.parse(errorStr);
     if (parsed.error) {
       message = typeof parsed.error === 'string' ? parsed.error : (parsed.error.message || JSON.stringify(parsed.error));
-      type = parsed.error.type || type;
+      
+      // 根据上游返回的错误类型映射
+      const upstreamType = parsed.error.type || '';
+      if (upstreamType.includes('invalid_api_key') || upstreamType.includes('authentication')) {
+        type = 'invalid_request_error'; // 401 - 映射为请求错误
+        code = 401;
+      } else if (upstreamType.includes('insufficient_quota') || upstreamType.includes('billing')) {
+        type = 'authentication_error'; // 403 - 权限问题
+        code = 403;
+      } else if (upstreamType.includes('rate_limit')) {
+        type = 'rate_limit_error';
+        code = 429;
+      } else if (upstreamType.includes('invalid_request') || upstreamType.includes('validation')) {
+        type = 'invalid_request_error';
+        code = 400;
+      } else if (upstreamType.includes('model_not_found') || upstreamType.includes('unknown_model')) {
+        type = 'invalid_request_error';
+        code = 400;
+      } else {
+        type = parsed.error.type || type;
+      }
       code = parsed.error.code || code;
     } else if (parsed.message) {
       message = parsed.message;
     }
   } catch (e) {
     // 保持原字符串
+  }
+
+  // 根据状态码调整错误类型
+  if (status === 401) {
+    type = 'invalid_request_error';
+    message = message || 'Missing or invalid API key';
+  } else if (status === 403) {
+    type = 'authentication_error';
+    message = message || 'The model is not available for your current access tier';
+  } else if (status === 429) {
+    type = 'rate_limit_error';
+    message = message || 'Rate limit or concurrency limit reached. Wait and retry.';
+  } else if (status >= 500 && status < 600) {
+    type = 'server_error';
+    message = message || 'Provider or gateway failure. Retry once before reporting.';
   }
 
   return {
@@ -367,6 +515,17 @@ function logRequest(requestId, req, keyName, model, duration, error, responseHea
       return;
     }
 
+    // 清理错误信息，移除 HTML 内容
+    let cleanError = error;
+    if (error && typeof error === 'object' && error.error) {
+      cleanError = {
+        ...error,
+        error: sanitizeErrorForLog(error.error)
+      };
+    } else if (error && typeof error === 'string') {
+      cleanError = sanitizeErrorForLog(error);
+    }
+
     const entry = {
       id: requestId,
       timestamp: new Date().toISOString(),
@@ -376,7 +535,7 @@ function logRequest(requestId, req, keyName, model, duration, error, responseHea
       keyName: keyName || null,
       duration: duration || 0,
       status: status || null,
-      error: error || null,
+      error: cleanError || null,
       responseHeaders: config?.logging?.logResponseHeaders !== false ? (responseHeaders || null) : null,
       clientIp: req.ip || req.connection?.remoteAddress || null
     };
@@ -740,15 +899,155 @@ async function handleImagesGenerations(req, res) {
 }
 
 /**
- * 图片编辑接口 (multipart/form-data)
+ * 图片编辑接口 - 支持 JSON (base64) 和 multipart/form-data 格式
  */
 async function handleImagesEdits(req, res) {
   const requestId = uuidv4();
   const startTime = Date.now();
   
+  const contentType = req.headers['content-type'] || '';
+  const isMultipart = contentType.includes('multipart/form-data');
+  
   try {
-    const parsedMultipart = await parseMultipartRequest(req);
-    const model = parsedMultipart.fields?.model?.[0];
+    let model, imageItems, prompt, mask;
+    let extraParams = {};
+
+    function normalizeImageItem(value, fallbackMimeType = 'image/png') {
+      if (!value) return null;
+
+      if (typeof value === 'string') {
+        const trimmed = value.trim();
+        if (!trimmed) return null;
+
+        if (trimmed.startsWith('data:')) {
+          return { type: 'data_url', dataUrl: trimmed };
+        }
+
+        if (/^https?:\/\//i.test(trimmed)) {
+          return { type: 'url', url: trimmed };
+        }
+
+        if (/^[A-Za-z0-9+/=\r\n]+$/.test(trimmed)) {
+          return { type: 'base64', mimeType: fallbackMimeType, data: trimmed };
+        }
+
+        return { type: 'url', url: trimmed };
+      }
+
+      if (Buffer.isBuffer(value)) {
+        return { type: 'buffer', mimeType: fallbackMimeType, content: value };
+      }
+
+      if (typeof value === 'object') {
+        if (Array.isArray(value)) return null;
+
+        if (value.dataUrl || value.url || value.base64 || value.image || value.content) {
+          return normalizeImageItem(
+            value.dataUrl || value.url || value.base64 || value.image || value.content,
+            value.mimeType || fallbackMimeType
+          );
+        }
+
+        if (value.path && fs.existsSync(value.path)) {
+          return {
+            type: 'buffer',
+            mimeType: value.mimeType || fallbackMimeType,
+            content: fs.readFileSync(value.path),
+            filename: value.filename || 'image.png'
+          };
+        }
+      }
+
+      return null;
+    }
+
+    function collectImageItems(value, fallbackMimeType = 'image/png') {
+      if (value === undefined || value === null) return [];
+      if (Array.isArray(value)) {
+        return value.map(item => normalizeImageItem(item, fallbackMimeType)).filter(Boolean);
+      }
+      const normalized = normalizeImageItem(value, fallbackMimeType);
+      return normalized ? [normalized] : [];
+    }
+
+    function imageItemToDataUrl(img) {
+      if (!img) return null;
+      if (img.type === 'data_url') return img.dataUrl;
+      if (img.type === 'base64') {
+        return img.data.startsWith('data:') ? img.data : `data:${img.mimeType || 'image/png'};base64,${img.data}`;
+      }
+      if (img.type === 'buffer') {
+        return `data:${img.mimeType || 'image/png'};base64,${img.content.toString('base64')}`;
+      }
+      if (img.type === 'url') return img.url;
+      return null;
+    }
+
+    if (isMultipart) {
+      // multipart/form-data 格式
+      const parsedMultipart = await parseMultipartRequest(req);
+      model = parsedMultipart.fields?.model?.[0];
+      
+      // 兼容 image / image[] / images / images[] / file 字段
+      const multipartImages = [];
+      const multipartImageKeys = ['image', 'image[]', 'images', 'images[]', 'file', 'files'];
+      for (const key of multipartImageKeys) {
+        const files = parsedMultipart.files?.[key] || [];
+        for (const file of files) {
+          multipartImages.push({
+            type: 'buffer',
+            content: fs.readFileSync(file.path),
+            filename: file.originalFilename || 'image.png',
+            mimeType: file.headers?.['content-type'] || 'image/png'
+          });
+        }
+      }
+      imageItems = multipartImages;
+
+      // 兼容 mask 字段（可选）
+      const maskFile = parsedMultipart.files?.mask?.[0];
+      if (maskFile) {
+        mask = {
+          type: 'buffer',
+          content: fs.readFileSync(maskFile.path),
+          filename: maskFile.originalFilename || 'mask.png',
+          mimeType: maskFile.headers?.['content-type'] || 'image/png'
+        };
+      }
+
+      // 处理其他字段
+      prompt = parsedMultipart.fields?.prompt?.[0];
+      extraParams = {
+        size: parsedMultipart.fields?.size?.[0],
+        output_format: parsedMultipart.fields?.output_format?.[0],
+        moderation: parsedMultipart.fields?.moderation?.[0],
+        quality: parsedMultipart.fields?.quality?.[0],
+        n: parsedMultipart.fields?.n?.[0],
+        user: parsedMultipart.fields?.user?.[0]
+      };
+    } else {
+      // JSON 格式 (支持 base64 图片)
+      model = req.body?.model;
+      imageItems = collectImageItems(
+        req.body?.image ||
+        req.body?.['image[]'] ||
+        req.body?.images ||
+        req.body?.['images[]']
+      );
+
+      // 兼容 mask (可选)
+      mask = normalizeImageItem(req.body?.mask);
+      
+      prompt = req.body?.prompt;
+      extraParams = {
+        size: req.body?.size,
+        output_format: req.body?.output_format,
+        moderation: req.body?.moderation,
+        quality: req.body?.quality,
+        n: req.body?.n,
+        user: req.body?.user
+      };
+    }
     
     if (!model) {
       return res.status(400).json({ 
@@ -756,6 +1055,16 @@ async function handleImagesEdits(req, res) {
           message: "Missing 'model' parameter",
           type: "invalid_request_error",
           code: "missing_model"
+        }
+      });
+    }
+
+    if (!imageItems || imageItems.length === 0) {
+      return res.status(400).json({ 
+        error: {
+          message: "Missing 'image' parameter",
+          type: "invalid_request_error",
+          code: "missing_image"
         }
       });
     }
@@ -791,29 +1100,25 @@ async function handleImagesEdits(req, res) {
     });
 
     const targetUrl = buildTargetUrl('images/edits', apiKey.baseUrl);
-    const FormData = require('form-data');
-    const formData = new FormData();
+    const isJsonTarget = true;
 
-    for (const [key, values] of Object.entries(parsedMultipart.fields || {})) {
-      if (values && values.length > 0) {
-        formData.append(key, values[0]);
+    const jsonBody = {
+      model,
+      prompt,
+      image: imageItems.length === 1 ? imageItemToDataUrl(imageItems[0]) : imageItems.map(imageItemToDataUrl)
+    };
+
+    if (mask) {
+      jsonBody.mask = imageItemToDataUrl(mask);
+    }
+
+    for (const [key, value] of Object.entries(extraParams)) {
+      if (value !== undefined && value !== null && value !== '') {
+        jsonBody[key] = value;
       }
     }
 
-    for (const [key, fileArr] of Object.entries(parsedMultipart.files || {})) {
-      if (fileArr && fileArr.length > 0) {
-        const file = fileArr[0];
-        const cleanKey = key.replace(/\[\]$/, '');
-        const content = fs.readFileSync(file.path);
-        const mimeType = file.headers?.['content-type'] || 'image/png';
-        formData.append(cleanKey, content, {
-          filename: file.originalFilename || 'image.png',
-          contentType: mimeType
-        });
-      }
-    }
-
-    console.log(`[${requestId}] [handleImagesEdits] 代理请求到 ${targetUrl}`);
+    console.log(`[${requestId}] [handleImagesEdits] 代理请求到 ${targetUrl}, 格式: ${isJsonTarget ? 'json/base64' : 'multipart'}`);
 
     const headers = {
       ...req.headers,
@@ -823,14 +1128,16 @@ async function handleImagesEdits(req, res) {
     delete headers.host;
     delete headers['content-length'];
 
-    const formHeaders = formData.getHeaders();
-    const requestHeaders = { ...headers, ...formHeaders };
+    const requestHeaders = {
+      ...headers,
+      'Content-Type': 'application/json'
+    };
 
     const response = await axios({
-      method: req.method,
+      method: 'POST',
       url: targetUrl,
       headers: requestHeaders,
-      data: formData,
+      data: jsonBody,
       responseType: 'arraybuffer',
       decompress: true,
       timeout: 300000,
